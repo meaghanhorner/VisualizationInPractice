@@ -1,0 +1,607 @@
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding:0;
+  background: #ffffff;
+  overflow:visible;
+}
+
+div{
+  padding:0px;
+  margin: 0px auto;
+  max-width: 1200px;
+}
+
+#scrolly{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  padding:20px;
+  margin: 20px auto;
+  max-width: 1440px;
+  min-height: 100vh;
+}
+
+
+.scrolly-steps {
+  position:relative;
+  grid-area: 1 / 1;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  justify-self: stretch;
+}
+
+#scrolly h2 {
+  grid-column: 1;
+  text-align: left;
+  z-index: 3;
+  padding: 2rem 0;
+}
+
+img {
+  min-width: 180px;
+  max-width: 90%;   
+  height: auto;      
+  display: block;   
+}
+
+canvas {
+  background: white;
+  border: 1px solid #ddd;
+}
+
+
+h2 {
+  font-family: "Urbanist", sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  font-style: normal;
+}
+p {
+  font-family: "Alegreya", serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a{
+  text-decoration:none;
+  font-weight:700;
+}
+
+ul, ol {
+  margin: 0 0 1em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.4em;
+  line-height:1.5;
+  font-size:1.4rem;
+}
+
+.custom-quote {
+  width:50%;
+  max-width:250px;
+  min-height: 100vh;
+  text-align: left;
+  position: relative;
+  padding: 10px 40px;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight:400;
+  opacity: 0; 
+  will-change: opacity;
+  display:block;
+  align-content:center;
+}
+
+.chart-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.chart-subtitle {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  text-align: left;
+}
+
+
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  grid-area: 1 / 1;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.sticky-graphic {
+  grid-area: 1 / 1;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sticky-graphic-right {
+  grid-area: 1 / 1;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sticky h2{
+  width:100%;
+  align-items:left;
+  text-align:left;
+}
+
+article {
+  position: relative;
+  grid-area: 1 / 1;
+  z-index: 2;
+  pointer-events: none; /* Mouse wheel passes through to background */
+}
+
+.step {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  pointer-events: auto;
+}
+
+.step.align-left {
+  max-width: 300px;
+  margin-left: 1%;
+  margin-right: auto;
+  text-align: left;
+}
+
+.step.align-right {
+  max-width:300px;
+  margin-left: auto;
+  margin-right: 1%;
+  text-align: left;
+}
+
+
+.step p, .step h2 {
+  width:50%;
+  max-width:300px;
+  margin-left: auto;
+  margin-right: 1%;
+  text-align: left;
+  opacity: 0; 
+  will-change: opacity;
+  display:block;
+  box-sizing:border-box;
+}
+
+.step-left p, .step-left h2 {
+  width:50%;
+  max-width:300px;
+  margin-right: auto;
+  margin-left: 1%;
+  text-align: left;
+  opacity: 0; 
+  will-change: opacity;
+  display:block;
+  box-sizing: border-box;
+  margin-top: 30vh;
+  margin-bottom:30vh;
+}
+
+.step-old p, .step-old h2 {
+  max-width: 350px;
+  padding: 5px;
+  border-radius: 8px;
+  margin-left: 40px;
+}
+
+/* Active step state */
+.step.is-active {
+  opacity: 1;
+}
+
+.step:last-child {
+  margin-bottom: 40vh;
+}
+
+.chart-b-wrapper {
+  width: 70%;
+  max-width: 900px;
+  margin: 0;   
+  padding-top:0;
+  padding-bottom:0;           
+  text-align: left;    
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  position: relative;
+  z-index: 3;
+}
+
+.chart-c-wrapper {
+  width: 90%;
+  max-width: 900px;
+  margin: 0;   
+  padding-top:0;
+  padding-bottom:0;           
+  text-align: left;    
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  position: relative;
+  z-index: 3;
+}
+
+.chart-d-wrapper {
+  width: 60%;
+  max-width: 900px;
+  margin: 0;   
+  padding-top:20vh;
+  padding-bottom:0;           
+  text-align: left;    
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  position: relative;
+  z-index: 3;
+}
+
+.chart-header {
+  margin-bottom:0;
+  text-align: left;       /* Forces titles/subtitles to align left */
+  width: 100%;
+}
+
+.chart-header h3 {
+  padding:0;
+  margin:0;
+  text-align: left;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.4rem;
+  font-weight:700;
+  
+}
+
+.chart-header h5{
+  text-align: left;
+  padding:0;
+  margin:0;
+  font-family: 'Alegreya', sans-serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:1.1rem;
+}
+
+.chart-header h6 {
+  padding:0;
+  margin:0;
+  text-align: left;
+  font-family: 'Urbanist', sans-serif;
+  font-size: .9rem;
+  font-weight:400;
+  
+}
+
+
+
+#chart-b-container {
+  width: 100%;
+  height: 55vh; 
+  min-height: 350px;
+  position: relative;
+}
+
+#chart-b-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chartB-tooltip {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85rem;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.1s ease-out;
+}
+
+.tooltip-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2px;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  line-height: 1.3;
+}
+
+.tooltip-row span {
+  color: #555;
+}
+
+.tooltip-total {
+  margin-top: 3px;
+  border-top: 1px stroke #f0f0f0;
+  font-weight: 600;
+}
+
+#chartC {
+  width: 100%;
+  height: 55vh; 
+  min-height: 350px;
+  position: relative;
+}
+
+#chartC svg {
+  
+  width: 100%;
+  height: 100%;
+  display: block;
+
+}
+
+#chart-d-container {
+  flex: 1; 
+  width: 65%;
+  height: auto;
+  min-height: 0; 
+  margin: 5px 0 5px auto;
+  justify-content:center;
+  display: flex;
+  flex-direction: column;
+}
+
+.section{
+  max-width:1000px;
+  position:relative;
+  margin:0px;
+  padding:15px;
+  display:grid;
+  grid-template-columns:1fr;
+  min-height:100vh;
+  align-content:center;
+  grid-template-rows:auto;
+  gap:16px;
+}
+
+.sectionB{
+  max-width:1000px;
+  position:relative;
+  margin:0px;
+  padding:15px;
+  display:grid;
+  grid-template-columns:1fr;
+  min-height:100vh;
+  align-content:center;
+  grid-template-rows:auto;
+  gap:16px;
+}
+
+.intro-step {
+  min-height: unset !important;
+  height: auto !important;
+  margin: 0px;
+  display: block;
+  max-width: 800px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color:#ffffff;
+  z-index: 3;
+  text-align: left;
+}
+
+.intro-step-left {
+  min-height: unset !important;
+  height: auto !important;
+  margin: 0px;
+  display: block;
+  max-width: 1000px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color:#ffffff;
+  z-index: 3;
+  text-align: left;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+#chartB-svg {
+  max-width: 100%;
+  height:auto;
+  display:block;
+  align-self:flex-start;
+}
+
+#chartD {
+  max-width: 100%;
+  height:auto;
+  display:block;
+  align-self:flex-start;
+  overflow:visible;
+}
+
+#chart-e {
+  width: 100%;
+  min-width:180px;
+
+  display:block;
+  align-self:flex-start;
+  overflow:visible;
+}
+
+#chart-e svg{
+  width: 100%;
+  height:auto;
+  display:block;
+}
+
+.chart-container {
+  max-width: 100%;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  height:auto;
+  margin:0 auto;
+  overflow:visible;
+}
+
+.spacer {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 14px;
+  }
+
+.scrolly-container {
+  position: relative;
+  width: 100%;
+  margin:0 auto;
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  clear: both; /* Prevents floating element overlaps */
+}
+
+.pin-wrap {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 0; /* Clear this so it doesn't push drawing down */
+}
+  .stage {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* Adjust to match your panel width */
+  min-height: 80vh;  /* Gives stage a height so pin-wrap doesn't collapse */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .drawing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .drawing.active { opacity: 1; }
+
+  #intro {
+  height: 100dvh;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* Centers h2 vertically in the 100dvh space */
+  align-items: center !important;    /* Centers h2 horizontally */
+  box-sizing: border-box;
+  padding: 0 2rem;
+  margin: 0;
+}
+
+#intro h2 {
+  margin: 0 !important;              /* Removes default heading margins pulling it down */
+  position: static !important;        /* Keeps h2 inside the flex flow */
+}
+
+
+#intro h3.scroll-prompt {
+  position: absolute !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+}
+
+
+.textmain {
+  width: 90%;
+  max-width:1200px;
+  padding:5px;
+  margin:0;
+}
+
+
+.caption {
+  display: block;
+  width: 100%;                  /* Replaces the fixed 363.052px width */
+  max-width: 1200px;
+  margin-left: 0;               /* Replaces 179.854px to remove left offset */
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;                 /* Shorthand for top, right, bottom, left */
+  text-align: left;
+  height: auto;                 /* Replaces 10.6667px so text doesn't clip */
+}
+
+.caption p {
+  padding:0px;
+  margin:0px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:.7rem;
+  text-align:left;
+}
+
+.caption a {
+  font-weight: 400;
+  color: #777777;
+}

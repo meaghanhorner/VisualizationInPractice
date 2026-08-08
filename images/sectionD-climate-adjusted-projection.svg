@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 942.1 552">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4d4d4d;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-1, .cls-3 {
+        font-size: 8.8px;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-6);
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-7);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-9);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-10);
+      }
+
+      .cls-11 {
+        fill: #fff;
+      }
+
+      .cls-12 {
+        stroke: #000;
+        stroke-width: 2.13px;
+      }
+
+      .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17 {
+        fill: none;
+      }
+
+      .cls-12, .cls-14, .cls-15, .cls-16, .cls-17 {
+        stroke-linejoin: round;
+      }
+
+      .cls-14 {
+        stroke: #b22222;
+      }
+
+      .cls-14, .cls-15, .cls-16 {
+        opacity: .6;
+        stroke-dasharray: 6.83 6.83;
+        stroke-width: 1.71px;
+      }
+
+      .cls-18 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-15 {
+        stroke: #ff8c00;
+      }
+
+      .cls-19 {
+        isolation: isolate;
+      }
+
+      .cls-20 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-21 {
+        clip-path: url(#clippath-8);
+      }
+
+      .cls-22 {
+        letter-spacing: 3.48em;
+      }
+
+      .cls-23 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-16 {
+        stroke: #7f7f7f;
+      }
+
+      .cls-24 {
+        letter-spacing: 0em;
+      }
+
+      .cls-25 {
+        letter-spacing: 3.37em;
+      }
+
+      .cls-26 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-2 {
+        font-size: 11px;
+      }
+
+      .cls-27 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-4 {
+        font-size: 13.2px;
+      }
+
+      .cls-17 {
+        stroke: #ebebeb;
+        stroke-width: 1.07px;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-13" x="56.52" y="423" width="877" height="2"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-13" x="56.52" y="298" width="877" height="2"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-13" x="56.52" y="174" width="877" height="2"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-13" x="56.52" y="49" width="877" height="2"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-13" x="160" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-13" x="288" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect class="cls-13" x="417" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect class="cls-13" x="546" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <rect class="cls-13" x="674" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-9">
+      <rect class="cls-13" x="803" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+    <clipPath id="clippath-10">
+      <rect class="cls-13" x="931" y="40.26" width="2" height="453.13"/>
+    </clipPath>
+  </defs>
+  <g class="cls-19">
+    <rect class="cls-11" width="939" height="552"/>
+    <rect class="cls-11" width="939" height="552"/>
+    <g class="cls-27">
+      <line class="cls-17" x1="56.52" y1="423.94" x2="933.52" y2="423.94"/>
+    </g>
+    <g class="cls-18">
+      <line class="cls-17" x1="56.52" y1="299.44" x2="933.52" y2="299.44"/>
+    </g>
+    <g class="cls-26">
+      <line class="cls-17" x1="56.52" y1="174.95" x2="933.52" y2="174.95"/>
+    </g>
+    <g class="cls-23">
+      <line class="cls-17" x1="56.52" y1="50.45" x2="933.52" y2="50.45"/>
+    </g>
+    <g class="cls-7">
+      <line class="cls-17" x1="160.82" y1="493.39" x2="160.82" y2="40.26"/>
+    </g>
+    <g class="cls-20">
+      <line class="cls-17" x1="289.39" y1="493.39" x2="289.39" y2="40.26"/>
+    </g>
+    <g class="cls-5">
+      <line class="cls-17" x1="417.96" y1="493.39" x2="417.96" y2="40.26"/>
+    </g>
+    <g class="cls-6">
+      <line class="cls-17" x1="546.6" y1="493.39" x2="546.6" y2="40.26"/>
+    </g>
+    <g class="cls-21">
+      <line class="cls-17" x1="675.17" y1="493.39" x2="675.17" y2="40.26"/>
+    </g>
+    <g class="cls-9">
+      <line class="cls-17" x1="803.74" y1="493.39" x2="803.74" y2="40.26"/>
+    </g>
+    <g class="cls-10">
+      <line class="cls-17" x1="932.31" y1="493.39" x2="932.31" y2="40.26"/>
+    </g>
+    <polyline class="cls-12" points="96.39 472.79 122.16 449.2 147.86 465.79 173.56 466.26 199.26 447.86 250.73 464.61 276.43 459.64 302.13 462.52 327.9 445.35 353.6 441.43 379.3 415.7"/>
+    <polyline class="cls-16" points="379.3 435.23 405 422.53 430.77 406.61 456.47 388.05 482.17 352.33 507.87 327.4 533.65 302.82 559.34 280.5 585.04 262.46 610.74 246.93 636.52 230.64 662.22 211.98 687.91 197.81 713.61 187.66 739.39 178.63 765.09 170.54 790.78 162.95 816.48 155.56 842.26 148.5 867.96 141.46 893.66 134.25"/>
+    <polyline class="cls-14" points="379.3 407.46 405 391.61 430.77 378.84 456.47 351.95 482.17 324.56 507.87 297.62 533.65 266.72 559.34 238.29 585.04 226.36 610.74 206.73 636.52 184.33 662.22 171.79 687.91 149.28 713.61 144.32 739.39 130.1 765.09 127.38 790.78 114.42 816.48 109.25 842.26 104.3 867.96 82.72 893.66 85.71"/>
+    <polyline class="cls-15" points="379.3 404.5 405 382.34 430.77 366.41 456.47 354.17 482.17 316.23 507.87 287.2 533.65 262.62 559.34 241.25 585.04 218.27 610.74 199.78 636.52 178.01 662.22 163.45 687.91 149.28 713.61 139.14 739.39 122.85 765.09 114.76 790.78 102 816.48 94.6 842.26 87.54 867.96 76.4 893.66 60.86"/>
+    <text class="cls-1" transform="translate(19.79 427.59)"><tspan x="0" y="0">160,000</tspan></text>
+    <text class="cls-1" transform="translate(19.79 303.09)"><tspan x="0" y="0">200,000</tspan></text>
+    <text class="cls-1" transform="translate(19.79 178.59)"><tspan x="0" y="0">240,000</tspan></text>
+    <text class="cls-1" transform="translate(19.79 54.1)"><tspan x="0" y="0">280,000</tspan></text>
+    <text class="cls-1" transform="translate(151.03 505.62)"><tspan x="0" y="0">2018</tspan></text>
+    <text class="cls-1" transform="translate(279.6 505.62)"><tspan x="0" y="0">2023</tspan></text>
+    <text class="cls-1" transform="translate(408.17 505.62)"><tspan x="0" y="0">2028</tspan></text>
+    <text class="cls-1" transform="translate(536.81 505.62)"><tspan x="0" y="0">2033</tspan></text>
+    <text class="cls-1" transform="translate(665.38 505.62)"><tspan x="0" y="0">2038</tspan></text>
+    <text class="cls-1" transform="translate(793.95 505.62)"><tspan x="0" y="0">2043</tspan></text>
+    <text class="cls-1" transform="translate(922.52 505.62)"><tspan x="0" y="0">2048</tspan></text>
+    <text class="cls-2" transform="translate(14.35 337.43) rotate(-90)"><tspan x="0" y="0">Monthly Peak Demand (MW)</tspan></text>
+    <line class="cls-12" x1="313.76" y1="532.4" x2="327.59" y2="532.4"/>
+    <line class="cls-16" x1="429" y1="532.4" x2="442.82" y2="532.4"/>
+    <line class="cls-14" x1="565.74" y1="532.4" x2="579.56" y2="532.4"/>
+    <line class="cls-15" x1="625.48" y1="532.4" x2="639.3" y2="532.4"/>
+    <text class="cls-3" transform="translate(334.79 536.05)"><tspan x="0" y="0">Historical Actual Pea</tspan><tspan class="cls-25" x="81.19" y="0">k</tspan><tspan class="cls-8" x="115.23" y="0">Official PJM Peak Forecas</tspan><tspan class="cls-22" x="218.9" y="0">t</tspan><tspan class="cls-24" x="251.97" y="0">RCP4.5</tspan></text>
+    <text class="cls-3" transform="translate(646.51 536.05)"><tspan x="0" y="0">RCP8.5</tspan></text>
+    <text class="cls-2" transform="translate(56.52 32.78)"><tspan x="0" y="0">Historical actual peaks (solid) vs. forecast and climate-adjusted projections (dashed)</tspan></text>
+    <text class="cls-4" transform="translate(56.52 15.93)"><tspan x="0" y="0">Is PJM Planning for Hotter Summer Peaks?</tspan></text>
+  </g>
+</svg>

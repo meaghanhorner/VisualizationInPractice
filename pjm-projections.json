@@ -1,0 +1,428 @@
+[
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2015-07-01",
+    "year": 2015,
+    "value": 144302
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2016-07-01",
+    "year": 2016,
+    "value": 151882
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2017-07-01",
+    "year": 2017,
+    "value": 146553
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2018-07-01",
+    "year": 2018,
+    "value": 146401
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2019-07-01",
+    "year": 2019,
+    "value": 152315
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2021-07-01",
+    "year": 2021,
+    "value": 146933
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2022-07-01",
+    "year": 2022,
+    "value": 148528
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2023-07-01",
+    "year": 2023,
+    "value": 147605
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2024-07-01",
+    "year": 2024,
+    "value": 153121
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2025-07-01",
+    "year": 2025,
+    "value": 154380
+  },
+  {
+    "series": "Historical Actual",
+    "plot_date_mw": "2026-07-01",
+    "year": 2026,
+    "value": 162648
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2027-07-01",
+    "year": 2027,
+    "value": 160451
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2028-07-01",
+    "year": 2028,
+    "value": 165567
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2029-07-01",
+    "year": 2029,
+    "value": 171530
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2030-07-01",
+    "year": 2030,
+    "value": 183008
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2031-07-01",
+    "year": 2031,
+    "value": 191017
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2032-07-01",
+    "year": 2032,
+    "value": 198915
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2033-07-01",
+    "year": 2033,
+    "value": 206084
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2034-07-01",
+    "year": 2034,
+    "value": 211882
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2035-07-01",
+    "year": 2035,
+    "value": 216872
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2036-07-01",
+    "year": 2036,
+    "value": 222106
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2037-07-01",
+    "year": 2037,
+    "value": 228100
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2038-07-01",
+    "year": 2038,
+    "value": 232653
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2039-07-01",
+    "year": 2039,
+    "value": 235913
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2040-07-01",
+    "year": 2040,
+    "value": 238817
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2041-07-01",
+    "year": 2041,
+    "value": 241416
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2042-07-01",
+    "year": 2042,
+    "value": 243853
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2043-07-01",
+    "year": 2043,
+    "value": 246229
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2044-07-01",
+    "year": 2044,
+    "value": 248498
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2045-07-01",
+    "year": 2045,
+    "value": 250760
+  },
+  {
+    "series": "PJM Official Forecast",
+    "plot_date_mw": "2046-07-01",
+    "year": 2046,
+    "value": 253077
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2027-07-01",
+    "year": 2027,
+    "value": 170385.8241
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2028-07-01",
+    "year": 2028,
+    "value": 174488.6848
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2029-07-01",
+    "year": 2029,
+    "value": 183128.9981
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2030-07-01",
+    "year": 2030,
+    "value": 191929.6848
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2031-07-01",
+    "year": 2031,
+    "value": 200586.1563
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2032-07-01",
+    "year": 2032,
+    "value": 210513.9981
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2033-07-01",
+    "year": 2033,
+    "value": 219646.4097
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2034-07-01",
+    "year": 2034,
+    "value": 223480.9981
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2035-07-01",
+    "year": 2035,
+    "value": 229786.9382
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2036-07-01",
+    "year": 2036,
+    "value": 236984.3498
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2037-07-01",
+    "year": 2037,
+    "value": 241014.9382
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2038-07-01",
+    "year": 2038,
+    "value": 248245.2514
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2039-07-01",
+    "year": 2039,
+    "value": 249841.0774
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2040-07-01",
+    "year": 2040,
+    "value": 254409.2514
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2041-07-01",
+    "year": 2041,
+    "value": 255281.2106
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2042-07-01",
+    "year": 2042,
+    "value": 259445.2514
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2043-07-01",
+    "year": 2043,
+    "value": 261107.3498
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2044-07-01",
+    "year": 2044,
+    "value": 262697.6011
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2045-07-01",
+    "year": 2045,
+    "value": 269631.6031
+  },
+  {
+    "series": "RCP 4.5",
+    "plot_date_mw": "2046-07-01",
+    "year": 2046,
+    "value": 268669.2514
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2027-07-01",
+    "year": 2027,
+    "value": 173365.9382
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2028-07-01",
+    "year": 2028,
+    "value": 178481.9382
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2029-07-01",
+    "year": 2029,
+    "value": 182415.0965
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2030-07-01",
+    "year": 2030,
+    "value": 194606.9981
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2031-07-01",
+    "year": 2031,
+    "value": 203931.9382
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2032-07-01",
+    "year": 2032,
+    "value": 211829.9382
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2033-07-01",
+    "year": 2033,
+    "value": 218696.1373
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2034-07-01",
+    "year": 2034,
+    "value": 226081.6011
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2035-07-01",
+    "year": 2035,
+    "value": 232021.8734
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2036-07-01",
+    "year": 2036,
+    "value": 239014.1915
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2037-07-01",
+    "year": 2037,
+    "value": 243692.2514
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2038-07-01",
+    "year": 2038,
+    "value": 248245.2514
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2039-07-01",
+    "year": 2039,
+    "value": 251505.2514
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2040-07-01",
+    "year": 2040,
+    "value": 256738.3307
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2041-07-01",
+    "year": 2041,
+    "value": 259337.3307
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2042-07-01",
+    "year": 2042,
+    "value": 263438.5047
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2043-07-01",
+    "year": 2043,
+    "value": 265814.5047
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2044-07-01",
+    "year": 2044,
+    "value": 268083.5047
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2045-07-01",
+    "year": 2045,
+    "value": 271661.4448
+  },
+  {
+    "series": "RCP 8.5",
+    "plot_date_mw": "2046-07-01",
+    "year": 2046,
+    "value": 276655.7581
+  }
+]

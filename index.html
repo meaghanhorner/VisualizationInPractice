@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;800&family=Yuyu&family=Noto+Sans:ital,wght@100;400;600;700&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+  <main>
+
+<!-- page A -->
+
+
+  <div id="intro">
+    <div class = "intro-content">
+      <h2>Man, it's a hot one...</h2></div>
+      <h3 class = "scroll-prompt">Scroll for more...<span>↓</span></h3>
+    </div>
+
+<section class = "scroll-container">
+  <div class="pin-wrap">
+  <div class="stage" id="stage">
+    <div class="drawing active" data-index="0">
+        <img src="images/ImageA_a_01.svg" alt="comic panel of a woman and a cat in front of a fan, both clearly very hot.">
+      </svg>
+    </div>
+    <div class="drawing" data-index="1">
+      <img src ="images/ImageA_a_02.svg" alt="image2">
+      </svg>
+    </div>
+    <div class="drawing" data-index="2">
+      <img src ="images/ImageA_a_03.svg" alt="image3">
+      </svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- page B -->
+ <div class = "sectionB">
+  <div class = "scrolly-container">
+  <div class="sticky-graphic">
+    <div class = "intro-step">
+  <h2>Data Center Alley</h2>
+        <p>Dubbed "Data Center Alley", Virginia has more than twice as many data centers as Texas, the state with the next highest total.</p>
+      </div>
+ <div class = "chart-b-wrapper">
+  <div class = "chart-header">
+    <h3>Virginia Has More Data Centers Than Any Other State</h3>
+      <h5>Map of Count of Planned and Built Data Centers Across US</h5>
+      <h6>Hover for detailed information</h6>
+      </div>
+    <div id="chart-b-container" alt = "Map of Count of Data Centers Across US"></div><div class="caption"><p>Source: <a href="https://brockovichdatacenter.com/">Brockovich AI Data Center Reporting</a></p>
+    </div>
+    </div>
+    </div>
+    <div class = "scrolly-steps">
+    <div class="step" data-step="1"><p>In Virginia, electricity is provided by Dominion Energy. Dominion Energy operates as part of PJM Interconnection, a regional transmission organization (RTO) that coordinates the flow of electricity across all or part of 13 states plus Washington, DC.</p></div>
+    <div class="step" data-step="2"><p>Operating an electricity grid across a large area allows PJM to compensate for electricity needs throughout the entire region, making brownouts less likely in cases of high localized demand. On the other hand, it means that a dramatic increase in power use in one state — like in Virginia, from data centers — affects all states in the network, even those without data centers.</p></div>
+    <div class="step" data-step="3"><p>PJM operates a specialized "capacity market" - an annual auction where utilities pay power plants to guarantee they can deliver backup power during times of peak demand. In PJM's latest auction, those wholesale prices skyrocketed from $29/MW-day to roughly $330/MW-day — a tenfold increase — in just two years. If you’re wondering how this will affect your wallet, stay tuned - we’ll get back to that. </p></div>
+  </div>
+  </div>
+  </div>
+  </div>
+<!-- page C -->
+ <div class = "section">
+  <div class = "textmain">
+  <h2>Data Center Power Demand in Virginia is projected to grow</h2>
+   <p>Dominion Energy, the energy provider for Virginia, expects that data center coincident peak demand — the power that is demanded at a single moment — will quadruple over the next 20 years, from about 4GW in 2025 to 16.6 GW in 2046.</p>
+   </div>
+   <div class = "chart-c-wrapper"><div class = "chart-header"><h3>Dominion Energy Expects Data Center Power Demand To Quadruple By 2046</h3>
+      <h5>Forecasted coincident peak demand (in GW) for data centers in Dominion Energy's service territory </h5></div>
+    
+   <div class = "chart-container" alt = "bar chart showing data center power demand growing from 4GW to 16 GW from 2026 to 2046">
+   <div id ="chartC"></div><div class = "caption"><p>Source: <a href = "https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/dominion-documentation.pdf">Dominion Energy Data Center Load Forecast Documentation (PJM Interconnection)</a></p></div> 
+  </div>
+  </div>
+  </div>
+  
+<!-- page D -->
+ <div class = "section">
+  <div class = "scrolly-container">
+  <div class = "sticky-graphic-right">
+    <div class = "intro-step-left"><h2>PJM's demand prediction does not account for hotter summers</h2></div>
+    <div class = "chart-d-wrapper"><div class = "chart-header"><h3>Needed Energy Capacity Projected To Grow Significantly</h3><h5>Past actual energy capacity demand and projected demand, in Megawatts</h5><a href = "methodology.html">More about methodology</a></p>
+  </div>
+      <div class ="chart-d-container"><div id = "chartD"></div>
+    <div class="caption"><p>Source: <a href="http://www.degreedays.net">Degree Days.net</a></p>
+    <p><a href="https://crt-climate-explorer.nemac.org/">U.S. Climate Explorer (NOAA / U.S. Global Change Research Program, Projected Annual Cooling Days [CDD], RCP 4.5 & RCP 8.5 scenarios for Washington, DC; Chicago, IL; Baltimore, MD; Philadelphia, PA; and Pittsburgh, PA)</a></p>
+    <p><a href="https://dataminer2.pjm.com/feed/load_frcstd_hist/definition">PJM Historical Load Forecasts</a></p>
+    <p><a href="https://pjm.my.site.com/publicknowledge/s/article/Load-Forecasting-Supplement-and-2026-PJM-Load-Forecast-Report?language=en_US">PJM Load Forecasting Supplement and 2026 PJM Load Forecast Report</a></p>
+    </div>
+    </div></div></div>
+  <div class = "scrolly-steps">
+  <div class = "step-left" data-step="1"></div>
+<div class = "step-left" data-step = "2"><p>Between 2015 and 2023, when Chat GPT became the first widely-used LLM tool, demand for electricity in the PJM service area stayed relatively flat.</p></div>
+   <div class = "step-left" data-step = "3"><p>Since 2023, however, LLM tools and the data centers powering them have sent pwer companies and distributors scrambling to keep pace. PJM has estimated the demand growth over the next 20 years if all the planned data centers are built, and the numbers are stark.</p></div>
+   <div class = "step-left" data-step = "4"><p>Although PJM can currently meet capacity demand, which peaked in 2026 at roughly 160,000 megawatts, will it be able to meet 2033 demands of at least 200,000 megawatts?</p></div>
+   <div class = "step-left" data-step = "5"><p>More striking still is that PJM uses for its demand predictions weather from the past 30 years, rather than NOAA predictions about the next 30 years.</p></div>
+   <div class = "step-left" data-step = "6"><p>PJM describes their weather assumptions as follows, in their own internal document:</p>
+      <blockquote class = "custom-quote">The 2025 Long-Term Load Forecast uses historical weather data from 1993 to 2023 as the basis for constructing forecasts. No explicit assumption is being made about Climate Change, and thus the assumption is that future weather will resemble past weather.</blockquote>
+    </div>
+  </div>
+  </div>
+  </div>
+<!-- page E -->
+ <div class = section>
+  <h2>With power demands set to boom, is the grid able to handle it? </h2>
+   <p>Power plants built in the 1950s and 60s may reach their end of life soon, especially given that the average lifespan of a coal or natural gas power plant is around 55 years. New power plants are currently under construction, with planned completion dates within the next decade, but fewer are being built than in the 2000s, when power demand was nowhere near as high as it's projected to be.</p>
+   <p>Without a herculean effort, there is no way to power the incoming wave of data centers while also meeting the existing needs of the PJM service area.</p>
+   <div class = "chart-c-wrapper"><div class = "chart-header"><h3>Power Plant Construction Remains Flat Despite Forecasted Energy Crunch</h3><h5>Distribution of power plant capacity in megawatts across PJM Interconnection by decade built and fuel source, split by operating versus planned facilities</h5><div class = "chart-c-container">
+   <div id = "chart-e"></div><div class = "caption"><p>Source: <a href="https://datasets.wri.org/datasets/global-power-plant-database">WRI Global Power Plant Database</a>, <a href ="https://www.eia.gov/electricity/data/eia860/">U.S. Enegy Information Administration form EIA-860</a></p></div> 
+  </div>
+</div>
+</div>
+<!-- page F -->
+ <div class = section>
+  <h2>So We Need More Power Plants?</h2>
+   <p>Although it might seem like the obvious solution, building more power plants is far from a panacea. Plants built which use fossil fuels risk sending us further into a viscious circle where we burn fossil fuels to keep cool, warming the planet and forcing us to burn more fossil fuels to keep cool...</p>
+ <img src = "images/cycle.svg", alt = "image showing the cycle of more heat leading to more air conditioning leading to more greenhouse gases leading to more heat">
+  </div>
+<!-- page G -->
+ <div class = section>
+  <h2>So what does this mean for your wallet?</h2>
+   <p>Greenhouse gases aren’t the only thing spiking as data centers gobble up power grid capacity. Remember that price jump I mentioned earlier — the one where PJM's capacity auction shot from $29 to $330 per megawatt-day? You may not be feeling the full brunt of it yet — but that doesn't mean you won't. </p>
+   <p>In most states, before utilities can pass on their increased costs to consumers, they have to file rate adjustments with state regulators, delaying when consumers feel the hit. But in deregulated areas like New Jersey and Washington, D.C., consumer rates adjust almost automatically, causing sharp, immediate price spikes.</p>
+   <p>New Jersey and D.C. are like the canaries in the coal mine for price spikes that will inevitably ripple out to the rest of the states in the PJM grid.</p>
+    <p>Some lawmakers have introduced bills that would require data centers to ‘pay their own way’ for the new grid capacity they require, but until and unless those bills become law, the bill for powering the cloud is headed straight for your mailbox. And even as PJM denies that summers are getting hotter, your electricity bill is telling a different story.</p>
+   <div class = "chart-c-wrapper"><div class = "chart-header"><h3>New Jersey and Washington, D.C. Lead The Way in Price Hikes</h3><h5>Increase in Price per kWh since 2001 for States Served by PJM</h5><div>
+    <div class = "chart-container">
+    <div id = "chart-g"></div><div class="caption"><p>Source:<a href="https://www.eia.gov/electricity/data/browser/#/topic/7?agg=0">U.S. Energy Information Administration Electricity Data Browser</a></p></div>
+   </div>
+  </div>
+</div>
+</div>
+</div>
+   
+  </div>
+<!-- page H -->
+ <div class = section>
+  <h2>What to do? Take action in your community</h2>
+  <ul>
+   <li>Encourage your lawmakers to support bills that make data centers provide their own electricity so costs aren’t passed on to consumers</li>
+   <li>Vote for and support politicians enacting moratoriums on new data centers</li>
+   <li>Fight against data centers in your backyard - check out <a href = "http://brockovichdatacenter.com">http://brockovichdatacenter.com</a> to find out if a data center is being built near you and to find out about community actions against it</li>
+   <li>Demand that any new power plants in your community run on renewable resources like hydro, solar, and wind power so that the power grid can adapt to growing demand without producing more greenhouse gases</li>
+</ul>
+<img src = "images/protest-stock.svg", alt = "protesters with signs protesting AI data centers and fossil fuel plants" style="max-width:900px;">
+</div>
+
+</main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.umd.min.js"></script>
+   <script src="https://unpkg.com/scrollama"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

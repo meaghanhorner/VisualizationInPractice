@@ -1,0 +1,412 @@
+{
+  "data": [
+    {
+      "state": "Alabama",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.14,
+      "end_value": 16.06,
+      "pct_increase": 124.9
+    },
+    {
+      "state": "Alaska",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 12.31,
+      "end_value": 26.87,
+      "pct_increase": 118.3
+    },
+    {
+      "state": "Arizona",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.04,
+      "end_value": 15.23,
+      "pct_increase": 68.5
+    },
+    {
+      "state": "Arkansas",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.3,
+      "end_value": 13.37,
+      "pct_increase": 61.1
+    },
+    {
+      "state": "California",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 12.87,
+      "end_value": 33.59,
+      "pct_increase": 161
+    },
+    {
+      "state": "Colorado",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.18,
+      "end_value": 16.04,
+      "pct_increase": 96.1
+    },
+    {
+      "state": "Connecticut",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 11.06,
+      "end_value": 27.19,
+      "pct_increase": 145.8
+    },
+    {
+      "state": "Delaware",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.44,
+      "end_value": 18.16,
+      "pct_increase": 92.4
+    },
+    {
+      "state": "District Of Columbia",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.97,
+      "end_value": 22.7,
+      "pct_increase": 153.1
+    },
+    {
+      "state": "Florida",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.2,
+      "end_value": 15.35,
+      "pct_increase": 87.2
+    },
+    {
+      "state": "Georgia",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.37,
+      "end_value": 15.96,
+      "pct_increase": 90.7
+    },
+    {
+      "state": "Hawaii",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 16.38,
+      "end_value": 40.96,
+      "pct_increase": 150.1
+    },
+    {
+      "state": "Idaho",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 6.58,
+      "end_value": 12.07,
+      "pct_increase": 83.4
+    },
+    {
+      "state": "Illinois",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.43,
+      "end_value": 18.29,
+      "pct_increase": 94
+    },
+    {
+      "state": "Indiana",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.21,
+      "end_value": 16.48,
+      "pct_increase": 128.6
+    },
+    {
+      "state": "Iowa",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.95,
+      "end_value": 15.33,
+      "pct_increase": 71.3
+    },
+    {
+      "state": "Kansas",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.79,
+      "end_value": 15.04,
+      "pct_increase": 93.1
+    },
+    {
+      "state": "Kentucky",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 5.75,
+      "end_value": 13.4,
+      "pct_increase": 133
+    },
+    {
+      "state": "Louisiana",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.8,
+      "end_value": 12.74,
+      "pct_increase": 44.8
+    },
+    {
+      "state": "Maine",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 13.31,
+      "end_value": 28.14,
+      "pct_increase": 111.4
+    },
+    {
+      "state": "Maryland",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.56,
+      "end_value": 19.29,
+      "pct_increase": 125.4
+    },
+    {
+      "state": "Massachusetts",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 12.57,
+      "end_value": 30.33,
+      "pct_increase": 141.3
+    },
+    {
+      "state": "Michigan",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.52,
+      "end_value": 20.82,
+      "pct_increase": 144.4
+    },
+    {
+      "state": "Minnesota",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.2,
+      "end_value": 17.12,
+      "pct_increase": 108.8
+    },
+    {
+      "state": "Mississippi",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.81,
+      "end_value": 14.07,
+      "pct_increase": 80.2
+    },
+    {
+      "state": "Missouri",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.15,
+      "end_value": 15.91,
+      "pct_increase": 95.2
+    },
+    {
+      "state": "Montana",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.2,
+      "end_value": 14.81,
+      "pct_increase": 105.7
+    },
+    {
+      "state": "Nebraska",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.44,
+      "end_value": 13.14,
+      "pct_increase": 76.6
+    },
+    {
+      "state": "Nevada",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.23,
+      "end_value": 12.26,
+      "pct_increase": 32.8
+    },
+    {
+      "state": "New Hampshire",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 12.08,
+      "end_value": 23.51,
+      "pct_increase": 94.6
+    },
+    {
+      "state": "New Jersey",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 10.86,
+      "end_value": 24.88,
+      "pct_increase": 129.1
+    },
+    {
+      "state": "New Mexico",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.13,
+      "end_value": 14.68,
+      "pct_increase": 60.8
+    },
+    {
+      "state": "New York",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 14.41,
+      "end_value": 26.55,
+      "pct_increase": 84.2
+    },
+    {
+      "state": "North Carolina",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.19,
+      "end_value": 13.38,
+      "pct_increase": 63.4
+    },
+    {
+      "state": "North Dakota",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.46,
+      "end_value": 13.71,
+      "pct_increase": 83.8
+    },
+    {
+      "state": "Ohio",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.28,
+      "end_value": 17.5,
+      "pct_increase": 88.6
+    },
+    {
+      "state": "Oklahoma",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.03,
+      "end_value": 13.63,
+      "pct_increase": 69.7
+    },
+    {
+      "state": "Oregon",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 6.35,
+      "end_value": 15.8,
+      "pct_increase": 148.8
+    },
+    {
+      "state": "Pennsylvania",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 10.63,
+      "end_value": 19.69,
+      "pct_increase": 85.2
+    },
+    {
+      "state": "Rhode Island",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 12.57,
+      "end_value": 26.84,
+      "pct_increase": 113.5
+    },
+    {
+      "state": "South Carolina",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.8,
+      "end_value": 14.79,
+      "pct_increase": 89.6
+    },
+    {
+      "state": "South Dakota",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.25,
+      "end_value": 14.22,
+      "pct_increase": 72.4
+    },
+    {
+      "state": "Tennessee",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 6.37,
+      "end_value": 13.82,
+      "pct_increase": 117
+    },
+    {
+      "state": "Texas",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 9.63,
+      "end_value": 15.26,
+      "pct_increase": 58.5
+    },
+    {
+      "state": "Utah",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.05,
+      "end_value": 13.1,
+      "pct_increase": 85.8
+    },
+    {
+      "state": "Vermont",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 13.01,
+      "end_value": 23,
+      "pct_increase": 76.8
+    },
+    {
+      "state": "Virginia",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.46,
+      "end_value": 15.23,
+      "pct_increase": 80
+    },
+    {
+      "state": "Washington",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 5.67,
+      "end_value": 12.96,
+      "pct_increase": 128.6
+    },
+    {
+      "state": "West Virginia",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 6.55,
+      "end_value": 15.82,
+      "pct_increase": 141.5
+    },
+    {
+      "state": "Wisconsin",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 8.12,
+      "end_value": 18.52,
+      "pct_increase": 128.1
+    },
+    {
+      "state": "Wyoming",
+      "start_year": 2001,
+      "end_year": 2025,
+      "start_value": 7.19,
+      "end_value": 14.89,
+      "pct_increase": 107.1
+    }
+  ]
+}
