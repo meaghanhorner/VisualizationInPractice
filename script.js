@@ -1,5 +1,60 @@
 gsap.registerPlugin(ScrollTrigger)
 
+const fadeDuration = 0.01;
+const displayTime = 0.12; // Slightly increased so each frame is crisp
+
+// 1. Set up an isolated 3-frame loop for EACH .drawing group
+document.querySelectorAll(".drawing").forEach((drawingEl) => {
+  const slides = drawingEl.querySelectorAll(".slide");
+  if (!slides.length) return;
+
+  // Set initial frame visible
+  gsap.set(slides, { opacity: 0 });
+  gsap.set(slides[0], { opacity: 1 });
+
+  const tl = gsap.timeline({ repeat: -1 });
+
+  slides.forEach((slide, i) => {
+    const nextSlide = slides[(i + 1) % slides.length];
+
+    tl.to(
+      nextSlide,
+      { opacity: 1, duration: fadeDuration, ease: "none" },
+      `+=${displayTime}`
+    ).to(
+      slide,
+      { opacity: 0, duration: fadeDuration, ease: "none" },
+      "<" // Start fading out the current slide simultaneously as next fades in
+    );
+  });
+});
+
+// 2. Switch .active drawing group on scroll
+const drawings = document.querySelectorAll(".drawing");
+
+document.querySelectorAll(".step").forEach((stepEl) => {
+  const index = +stepEl.dataset.index;
+
+  ScrollTrigger.create({
+    trigger: stepEl,
+    start: "top center",
+    end: "bottom center",
+    onEnter: () => setActiveDrawing(index),
+    onEnterBack: () => setActiveDrawing(index)
+  });
+});
+
+function setActiveDrawing(index) {
+  drawings.forEach((el, i) => {
+    if (i === index) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+}
+
+
 ScrollTrigger.getAll().forEach(t => t.kill());
 
 /* opacity control on scrollies */
@@ -46,7 +101,7 @@ const chartB = {
   colorUS: null,
   colorPJM: null,
   greyColor: "#979797",
-  greyOpacity:0.05,
+  greyOpacity:0.25,
   currentview: "us",
   pjmZoomTarget: null,
 };
@@ -56,6 +111,10 @@ chartB.init = async function (containerSelector, dataUrl){
   const bounds = container.node().getBoundingClientRect();
   chartB.width = bounds.width || chartB.width;
   chartB.height = bounds.height || chartB.height;
+
+const containerNode = container.node();
+chartB.width = containerNode.getBoundingClientRect().width || 960;
+chartB.height = chartB.width * 0.58; // Standard ratio for Albers USA
 
 let tooltip = container.select(".chartB-tooltip");
   if (tooltip.empty()) {
@@ -72,7 +131,7 @@ let tooltip = container.select(".chartB-tooltip");
     .append("svg")
     .attr("id", "chartB-svg")
     .attr("viewBox", `0 0 ${chartB.width} ${chartB.height}`)
-    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("preserveAspectRatio", "xMidYMid meet")
     .style("font-family", "'Urbanist', sans-serif")
     .attr("width", "100%");
 
@@ -80,7 +139,7 @@ let tooltip = container.select(".chartB-tooltip");
   chartB.gStates = chartB.g.append("g").attr("class", "chartB-states");
 
   chartB.projection = d3.geoAlbersUsa();
-  chartB.path = d3.geoPath(chartB.projection); 
+  
 
 const [us, rawData] = await Promise.all([
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"),
@@ -92,10 +151,6 @@ const topojson = window.topojson;
 const usGeoJsonData = topojson.feature(us, us.objects.states);
 
 const topPadding = 0;
-chartB.projection.fitExtent(
-  [[0, topPadding], [chartB.width, chartB.height]],
-  usGeoJsonData
-);
 
 rawData.forEach((d) => chartB.data.set(d.state, d));
 
@@ -128,7 +183,14 @@ let states = topojson.feature(us, us.objects.states).features;
     "54":"West Virginia","55":"Wisconsin","56":"Wyoming"
   };
 
-  // Safely map padded FIPS codes to state names and abbreviations
+  const contiguousCollection = { type: "FeatureCollection", features: states };
+chartB.projection.fitExtent(
+  [[20, 20], [chartB.width - 20, chartB.height - 20]],
+  contiguousCollection
+);
+
+chartB.path = d3.geoPath(chartB.projection); 
+
   states = states.filter((d) => {
     const fips = String(d.id).padStart(2, "0");
     return !EXCLUDE_FIPS.has(fips);
@@ -152,7 +214,7 @@ let states = topojson.feature(us, us.objects.states).features;
     .join("path")
     .attr("class", "chartB-state")
     .attr("d", chartB.path)
-    .attr("stroke", "#fff")
+    .attr("stroke", "#515151")
     .attr("stroke-width", 0.75)
     .attr("fill", (d) => {
       const rec = chartB.data.get(d.abbr);
@@ -179,7 +241,7 @@ let states = topojson.feature(us, us.objects.states).features;
         <div class="tooltip-row tooltip-total"><span>Total:</span> <strong>${total}</strong></div>
       `);
 
-      // Mouse position relative to container
+  
       const [mouseX, mouseY] = d3.pointer(event, container.node());
       tooltip
         .style("left", `${mouseX + 12}px`)
@@ -198,7 +260,7 @@ let states = topojson.feature(us, us.objects.states).features;
 
         chartB.legendGroup = chartB.g.append("g")
           .attr("class", "chartB-legend")
-          .attr("transform", `translate(${chartB.width*.60}, ${chartB.height*.75})`);
+          .attr("transform", `translate(${chartB.width*.50}, ${chartB.height*1})`);
 
         chartB.legendGradient = defs.append("linearGradient")
           .attr("id", "chartB-legend-gradient")
@@ -238,26 +300,28 @@ let states = topojson.feature(us, us.objects.states).features;
   const axis = d3.axisBottom(legendScale).ticks(4).tickSize(4).tickFormat(d3.format(","));
   chartB.legendAxisG.call(axis);
 
-  chartB.legendLabel.text("Total data centers"); // static label, no longer view-dependent
+  chartB.legendLabel.text("Total data centers");
 };
 
       const pjmFeatures = states.filter((d) => chartB.pjmStates.has(d.abbr));
-      const pjmCollection = { type: "FeatureCollection", features: pjmFeatures };
-      const [[x0,y0], [x1,y1]] = chartB.path.bounds(pjmCollection);
-      const dx = x1 - x0;
-      const dy = y1- y0;
-      const cx = (x0 + x1) / 2;
-      const cy = (y0 + y1) / 2;
-      const padding = 0.5;
-      const scale = Math.max(
-        1,
-        Math.min(6, padding / Math.max(dx / chartB.width, dy / chartB.height))
-      );
-      chartB.pjmZoomTarget = {
-        scale,
-        x: chartB.width / 2 - scale * cx,
-        y: chartB.height / 2 - scale * cy,
-      };
+const pjmCollection = { type: "FeatureCollection", features: pjmFeatures };
+
+const [[x0, y0], [x1, y1]] = chartB.path.bounds(pjmCollection);
+const dx = x1 - x0;
+const dy = y1 - y0;
+const cx = (x0 + x1) / 2;
+const cy = (y0 + y1) / 2;
+
+const scale = Math.max(
+  1,
+  Math.min(5, 0.75 / Math.max(dx / chartB.width, dy / chartB.height))
+);
+
+chartB.pjmZoomTarget = {
+  scale: scale,
+  x: chartB.width / 2 - scale * cx,
+  y: chartB.height / 2 - scale * cy
+};
       chartB.buildLegend();
       return chartB;
 
@@ -335,7 +399,7 @@ chartB.showPJM = function(duration = 1.2) {
 /* chart c */
 
 (function() {
-  const margin = {top:30, right: 300, bottom: 250, left: 70},
+  const margin = {top:30, right: 300, bottom: 250, left: 35},
   width = 960 - margin.left - margin.right,
   height = 900 - margin.top - margin.bottom;
 
@@ -387,79 +451,219 @@ chartB.showPJM = function(duration = 1.2) {
 
 /* chart d */
 
-(function() {d3.json("pjm-projections.json").then(data => {
+const chartD = {
+  svg: null,
+  xScale: null,
+  yScale: null,
+  colorScale: null,
+  lineGenerator: null,
+  xAxisGroup: null,
+  data: null,
+  stages: null,
 
-  const bySeries = d3.group(data, d => d.series);
+  init: function (containerSelector, dataUrl) {
+    return d3.json(dataUrl).then((raw) => {
+      // 1. Parse dates and numeric values upfront
+      raw.forEach((d) => {
+        d.date = new Date(d.plot_date_mw);
+        d.value = +d.value;
+      });
+      this.data = raw;
 
+      const totalWidth = 900;
+      const totalHeight = 600;
+      const margin = { top: 30, right: 140, bottom: 50, left: 60 };
+      const width = totalWidth - margin.left - margin.right;
+      const height = totalHeight - margin.top - margin.bottom;
 
-  const margin = { top: 30, right: 800, bottom: 550, left: 60 };
-  const width = 1200 - margin.left - margin.right;
-  const height = 900 - margin.top - margin.bottom;
+      // 2. Setup SVG Root
+      this.svg = d3
+        .select(containerSelector)
+        .html("")
+        .append("svg")
+        .attr("viewBox", `0 0 ${totalWidth} ${totalHeight}`)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .style("width", "100%")
+        .style("height", "auto")
+        .style("overflow", "visible")
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
 
+      // 3. Setup Scales & Colors
+      this.colorScale = d3
+        .scaleOrdinal()
+        .domain(["Historical Actual", "PJM Official Forecast", "RCP 4.5", "RCP 8.5"])
+        .range(["#2b2b2b", "#777777", "#cc6d00", "#a80600"]);
 
-  const svg = d3.select("#chartD")
-    .html("")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+      this.yScale = d3
+        .scaleLinear()
+        .domain([0, d3.max(this.data, (d) => d.value)])
+        .nice()
+        .range([height, 0]);
 
-  const xScale = d3.scaleTime()
-    .domain(d3.extent(data, d => new Date(d.plot_date_mw)))
-    .range([0, width]);
+      this.xScale = d3.scaleTime().range([0, width]);
 
-  const yScale = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.value)]).nice()
-    .range([height, 0]);
+      // 4. Setup Axes & Path Generators
+      this.xAxisGroup = this.svg
+        .append("g")
+        .attr("transform", `translate(0,${height})`);
 
-  const colorScale = d3.scaleOrdinal()
-    .domain(["Historical Actual", "PJM Official Forecast", "RCP 4.5", "RCP 8.5"])
-    .range(["#2b2b2b", "#b0b0b0", "#ff9900", "#de2d26"]);
+      this.svg
+        .append("g")
+        .call(d3.axisLeft(this.yScale).tickFormat((d) => `${d / 1000}k MW`));
 
-  const line = d3.line()
-    .x(d => xScale(new Date(d.plot_date_mw)))
-    .y(d => yScale(d.value));
+      this.lineGenerator = d3
+        .line()
+        .x((d) => this.xScale(d.date))
+        .y((d) => this.yScale(d.value));
 
-  svg.append("g")
-    .attr("transform", `translate(0,${height})`)
-    .call(d3.axisBottom(xScale).ticks(8));
+      // 5. Configuration rules mapped to stages
+      this.stages = {
+        1: {
+          xDomain: [new Date("2015-01-01"), new Date("2023-12-31")],
+          filterFn: (d) =>
+            d.series === "Historical Actual" && d.date <= new Date("2023-12-31")
+        },
+        2: {
+          xDomain: [new Date("2015-01-01"), new Date("2026-12-31")],
+          filterFn: (d) =>
+            d.series === "Historical Actual" && d.date <= new Date("2026-12-31")
+        },
+        3: {
+          xDomain: [new Date("2015-01-01"), new Date("2046-12-31")],
+          filterFn: (d) =>
+            (d.series === "Historical Actual" || d.series === "PJM Official Forecast") &&
+            d.date <= new Date("2046-12-31")
+        },
+        4: {
+          xDomain: [new Date("2015-01-01"), d3.max(this.data, (d) => d.date)],
+          filterFn: () => true
+        }
+      };
 
-  svg.append("g")
-    .call(d3.axisLeft(yScale).tickFormat(d => `${d / 1000}k MW`));
+      // Set initial stage
+      this.setStage(1);
+    });
+  },
 
-  bySeries.forEach((values, series) => {
+  setStage: function (stepNum) {
+    let targetStage = 1;
 
-    svg.append("path")
-      .datum(values)
-      .attr("class", `line-${series.replace(/\s+/g, '-').toLowerCase()}`)
-      .attr("fill", "none")
-      .attr("stroke", colorScale(series))
-      .attr("stroke-width", series.includes("Historical") ? 2.5 : 2)
-      .attr("stroke-dasharray", series.includes("Historical") ? "none" : "4 4")
-      .attr("d", line);
-
-    const lastPoint = values[values.length - 1];
-
-
-    if (lastPoint) {
-      svg.append("text")
-        .attr("x", xScale(new Date(lastPoint.plot_date_mw)) + 8)
-        .attr("y", yScale(lastPoint.value) + 8)
-        .attr("dy", "0.35em")
-        .attr("fill", colorScale(series))
-        .style("font-size", "12px")
-        .style("font-weight", "600")
-        .style("font-family", "sans-serif")
-        .text(series);
+    if (stepNum === 1 || stepNum === 2) {
+      targetStage = 1;
+    } else if (stepNum === 3) {
+      targetStage = 2;
+    } else if (stepNum === 4 || stepNum === 5) {
+      targetStage = 3;
+    } else if (stepNum >= 6) {
+      targetStage = 4;
     }
 
-  });
+    const config = this.stages[targetStage];
+    if (!config) return;
 
-}).catch(error => {
-  console.error("Error loading or parsing JSON file:", error);
-});
-})();
+    const stageData = this.data.filter(config.filterFn);
+
+    const grouped = Array.from(
+      d3.group(stageData, (d) => d.series),
+      ([key, values]) => ({
+        key,
+        values: values.sort((a, b) => a.date - b.date)
+      })
+    );
+
+    // Update X Domain & Axis with transition
+    this.xScale.domain(config.xDomain);
+
+    this.xAxisGroup
+      .transition()
+      .duration(750)
+      .call(d3.axisBottom(this.xScale).ticks(8));
+
+    // --- Line Paths Data Join ---
+    const paths = this.svg.selectAll(".series-line").data(grouped, (d) => d.key);
+
+    paths
+      .exit()
+      .transition()
+      .duration(400)
+      .style("opacity", 0)
+      .remove();
+
+    paths
+      .enter()
+      .append("path")
+      .attr("class", (d) => `series-line line-${d.key.replace(/\s+/g, "-").toLowerCase()}`)
+      .attr("fill", "none")
+      .attr("stroke", (d) => this.colorScale(d.key))
+      .attr("stroke-width", (d) => (d.key.includes("Historical") ? 2.5 : 2))
+      .attr("stroke-dasharray", (d) => (d.key.includes("Historical") ? "none" : "4 4"))
+      .style("opacity", 0)
+      .merge(paths)
+      .transition()
+      .duration(750)
+      .style("opacity", 1)
+      .attr("d", (d) => this.lineGenerator(d.values));
+
+    // --- End Labels Data Join ---
+    const labels = this.svg.selectAll(".series-label").data(grouped, (d) => d.key);
+
+    labels
+      .exit()
+      .transition()
+      .duration(400)
+      .style("opacity", 0)
+      .remove();
+
+    labels
+      .enter()
+      .append("text")
+      .attr("class", "series-label")
+      .attr("dy", "0.35em")
+      .attr("fill", (d) => this.colorScale(d.key))
+      .style("font-size", "12px")
+      .style("font-weight", "600")
+      .style("font-family", "sans-serif")
+      .style("opacity", 0)
+      .merge(labels)
+      .transition()
+      .duration(750)
+      .style("opacity", 1)
+      .attr("x", (d) => {
+        const lastPoint = d.values[d.values.length - 1];
+        return this.xScale(lastPoint.date) + 8;
+      })
+      .attr("y", (d) => {
+        const lastPoint = d.values[d.values.length - 1];
+        return this.yScale(lastPoint.value);
+      })
+      .text((d) => d.key);
+  },
+
+  initScrollySteps: function () {
+    // Falls back gracefully if .sectionD class isn't on outer div
+    const stepElements = document.querySelectorAll(".sectionD .step").length
+      ? document.querySelectorAll(".sectionD .step")
+      : document.querySelectorAll(".scrolly-steps .step");
+
+    stepElements.forEach((stepEl) => {
+      const stepNum = +stepEl.dataset.step;
+
+      ScrollTrigger.create({
+        id: "d",
+        trigger: stepEl,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => this.setStage(stepNum),
+        onEnterBack: () => this.setStage(stepNum)
+      });
+    });
+
+    ScrollTrigger.refresh();
+  }
+};
+
+
 
 
 
@@ -798,7 +1002,14 @@ chartB.initScrollySteps = function () {
 chartB.init("#chart-b-container", "data_centers.json").then(() => {
   chartB.buildLegend();
   chartB.initScrollySteps();
-});
+
+})
+
+chartD.init("#chartD", "pjm-projections.json").then(() => {
+  chartD.initScrollySteps();
+});;
+
+
 
 
 gsap.registerPlugin(ScrollTrigger);

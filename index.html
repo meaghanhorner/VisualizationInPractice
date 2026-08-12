@@ -10,7 +10,11 @@
     <title>Document</title>
 </head>
 <body>
-
+<div class="swiss-grid-overlay">
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+</div>
   <main>
 
 <!-- page A -->
@@ -18,7 +22,8 @@
 
   <div id="intro">
     <div class = "intro-content">
-      <h2>Man, it's a hot one...</h2></div>
+      <h2>Cold Comfort</h2></div>
+      <h3>Data Centers, Climate Change, and the Cost of Staying Cool</h3>
       <h3 class = "scroll-prompt">Scroll for more...<span>↓</span></h3>
     </div>
 
@@ -26,22 +31,32 @@
   <div class="pin-wrap">
   <div class="stage" id="stage">
     <div class="drawing active" data-index="0">
-        <img src="images/ImageA_a_01.svg" alt="comic panel of a woman and a cat in front of a fan, both clearly very hot.">
-      </svg>
+      <img src = "images/ImageA_a1_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_a2_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_a3_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
     </div>
     <div class="drawing" data-index="1">
-      <img src ="images/ImageA_a_02.svg" alt="image2">
-      </svg>
+      <img src = "images/ImageA_b1_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_b2_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_b3_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
     </div>
     <div class="drawing" data-index="2">
-      <img src ="images/ImageA_a_03.svg" alt="image3">
-      </svg>
+      <img src = "images/ImageA_c1_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_c2_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
+      <img src = "images/ImageA_c3_01.svg" alt = "comic panel of a woman and a cat in front of a fan, both clearly very hot." class = "slide">
     </div>
   </div>
 </div>
+<div class="scroll-steps">
+    <div class="step" data-index="0"></div>
+    <div class="step" data-index="1"></div>
+    <div class="step" data-index="2"></div>
+  </div>
+</section>
 </section>
 
 <!-- page B -->
+ <div class = "section-outer">
  <div class = "sectionB">
   <div class = "scrolly-container">
   <div class="sticky-graphic">
@@ -68,7 +83,8 @@
   </div>
   </div>
 <!-- page C -->
- <div class = "section">
+ <div class = "section-outer2">
+ <div class = "sectionleft">
   <div class = "textmain">
   <h2>Data Center Power Demand in Virginia is projected to grow</h2>
    <p>Dominion Energy, the energy provider for Virginia, expects that data center coincident peak demand — the power that is demanded at a single moment — will quadruple over the next 20 years, from about 4GW in 2025 to 16.6 GW in 2046.</p>
@@ -81,35 +97,55 @@
   </div>
   </div>
   </div>
+  </div>
   
 <!-- page D -->
- <div class = "section">
-  <div class = "scrolly-container">
-  <div class = "sticky-graphic-right">
-    <div class = "intro-step-left"><h2>PJM's demand prediction does not account for hotter summers</h2></div>
-    <div class = "chart-d-wrapper"><div class = "chart-header"><h3>Needed Energy Capacity Projected To Grow Significantly</h3><h5>Past actual energy capacity demand and projected demand, in Megawatts</h5><a href = "methodology.html">More about methodology</a></p>
-  </div>
-      <div class ="chart-d-container"><div id = "chartD"></div>
-    <div class="caption"><p>Source: <a href="http://www.degreedays.net">Degree Days.net</a></p>
+<div class="section-outer sectionD">
+  <div class="section">
+    <div class="scrolly-container">
+      <div class="sticky-graphic">
+        <div class="intro-step-d"><h2>PJM's demand prediction does not account for hotter summers</h2></div>
+    <div class = "chart-d-wrapper"><div class="chart-header">
+            <h3>Needed Energy Capacity Projected To Grow Significantly</h3>
+            <h5>Past actual energy capacity demand and projected demand, in Megawatts</h5>
+            <p><a href="methodology.html">More about methodology</a></p>
+          </div>
+          <div class="chart-d-container">
+            <div id="chartD"></div>
+            <div class="caption"><p>Source: <a href="http://www.degreedays.net">Degree Days.net</a></p>
     <p><a href="https://crt-climate-explorer.nemac.org/">U.S. Climate Explorer (NOAA / U.S. Global Change Research Program, Projected Annual Cooling Days [CDD], RCP 4.5 & RCP 8.5 scenarios for Washington, DC; Chicago, IL; Baltimore, MD; Philadelphia, PA; and Pittsburgh, PA)</a></p>
     <p><a href="https://dataminer2.pjm.com/feed/load_frcstd_hist/definition">PJM Historical Load Forecasts</a></p>
     <p><a href="https://pjm.my.site.com/publicknowledge/s/article/Load-Forecasting-Supplement-and-2026-PJM-Load-Forecast-Report?language=en_US">PJM Load Forecasting Supplement and 2026 PJM Load Forecast Report</a></p>
     </div>
-    </div></div></div>
+    </div>
+  </div>
+</div>
   <div class = "scrolly-steps">
-  <div class = "step-left" data-step="1"></div>
-<div class = "step-left" data-step = "2"><p>Between 2015 and 2023, when Chat GPT became the first widely-used LLM tool, demand for electricity in the PJM service area stayed relatively flat.</p></div>
-   <div class = "step-left" data-step = "3"><p>Since 2023, however, LLM tools and the data centers powering them have sent pwer companies and distributors scrambling to keep pace. PJM has estimated the demand growth over the next 20 years if all the planned data centers are built, and the numbers are stark.</p></div>
-   <div class = "step-left" data-step = "4"><p>Although PJM can currently meet capacity demand, which peaked in 2026 at roughly 160,000 megawatts, will it be able to meet 2033 demands of at least 200,000 megawatts?</p></div>
-   <div class = "step-left" data-step = "5"><p>More striking still is that PJM uses for its demand predictions weather from the past 30 years, rather than NOAA predictions about the next 30 years.</p></div>
-   <div class = "step-left" data-step = "6"><p>PJM describes their weather assumptions as follows, in their own internal document:</p>
-      <blockquote class = "custom-quote">The 2025 Long-Term Load Forecast uses historical weather data from 1993 to 2023 as the basis for constructing forecasts. No explicit assumption is being made about Climate Change, and thus the assumption is that future weather will resemble past weather.</blockquote>
+  <div class = "step" data-step="1"></div>
+<div class = "step" data-step = "2"><p>Between 2015 and 2023, when Chat GPT became the first widely-used LLM tool, demand for electricity in the PJM service area stayed relatively flat.</p></div>
+   <div class = "step" data-step = "3"><p>Since 2023, however, LLM tools and the data centers powering them have sent pwer companies and distributors scrambling to keep pace. PJM has estimated the demand growth over the next 20 years if all the planned data centers are built, and the numbers are stark.</p></div>
+   <div class = "step" data-step = "4"><p>Although PJM can currently meet capacity demand, which peaked in 2026 at roughly 160,000 megawatts, will it be able to meet 2033 demands of at least 200,000 megawatts?</p></div>
+   <div class = "step" data-step = "5"><p>More striking still is that PJM uses for its demand predictions weather from the past 30 years, rather than NOAA predictions about the next 30 years.</p></div>
+   <div class = "step" data-step = "6"><p>If we instead use NOAA forecasts to plot what summers might look like under two likely climate change scenarios, known as RCP 4.5 and RCP 8.5, we see the picture is very different.</p></div>
+   <div class = "step" data-step = "6"><p>PJM describes their weather assumptions as follows, in their own internal document:</p>
     </div>
   </div>
   </div>
   </div>
+  </div>
+</div>
+
+<section class="curtain-section">
+  <div class="curtain-content">
+    <blockquote class = "custom-quote">The 2025 Long-Term Load Forecast uses historical weather data from 1993 to 2023 as the basis for constructing forecasts. No explicit assumption is being made about Climate Change, and thus the assumption is that future weather will resemble past weather.</blockquote>
+  </div>
+</section>
+
+
+
 <!-- page E -->
  <div class = section>
+  <div class = "section-inner">
   <h2>With power demands set to boom, is the grid able to handle it? </h2>
    <p>Power plants built in the 1950s and 60s may reach their end of life soon, especially given that the average lifespan of a coal or natural gas power plant is around 55 years. New power plants are currently under construction, with planned completion dates within the next decade, but fewer are being built than in the 2000s, when power demand was nowhere near as high as it's projected to be.</p>
    <p>Without a herculean effort, there is no way to power the incoming wave of data centers while also meeting the existing needs of the PJM service area.</p>
@@ -118,14 +154,19 @@
   </div>
 </div>
 </div>
+</div>
+</div>
 <!-- page F -->
  <div class = section>
+  <div class = "section-inner">
   <h2>So We Need More Power Plants?</h2>
    <p>Although it might seem like the obvious solution, building more power plants is far from a panacea. Plants built which use fossil fuels risk sending us further into a viscious circle where we burn fossil fuels to keep cool, warming the planet and forcing us to burn more fossil fuels to keep cool...</p>
  <img src = "images/cycle.svg", alt = "image showing the cycle of more heat leading to more air conditioning leading to more greenhouse gases leading to more heat">
   </div>
+  </div>
 <!-- page G -->
  <div class = section>
+  <div class = "section-inner">
   <h2>So what does this mean for your wallet?</h2>
    <p>Greenhouse gases aren’t the only thing spiking as data centers gobble up power grid capacity. Remember that price jump I mentioned earlier — the one where PJM's capacity auction shot from $29 to $330 per megawatt-day? You may not be feeling the full brunt of it yet — but that doesn't mean you won't. </p>
    <p>In most states, before utilities can pass on their increased costs to consumers, they have to file rate adjustments with state regulators, delaying when consumers feel the hit. But in deregulated areas like New Jersey and Washington, D.C., consumer rates adjust almost automatically, causing sharp, immediate price spikes.</p>
@@ -136,6 +177,7 @@
     <div id = "chart-g"></div><div class="caption"><p>Source:<a href="https://www.eia.gov/electricity/data/browser/#/topic/7?agg=0">U.S. Energy Information Administration Electricity Data Browser</a></p></div>
    </div>
   </div>
+</div>
 </div>
 </div>
 </div>
@@ -152,7 +194,6 @@
 </ul>
 <img src = "images/protest-stock.svg", alt = "protesters with signs protesting AI data centers and fossil fuel plants" style="max-width:900px;">
 </div>
-
 </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.umd.min.js"></script>
    <script src="https://unpkg.com/scrollama"></script>

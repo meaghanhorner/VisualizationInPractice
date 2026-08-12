@@ -1,3 +1,4 @@
+
 body {
   position: relative;
   display: flex;
@@ -6,14 +7,17 @@ body {
   align-items: center;
   margin: 0;
   padding:0;
-  background: #ffffff;
   overflow:visible;
+}
+
+main {
+  width:100%;
+  align-self:stretch;
 }
 
 div{
   padding:0px;
   margin: 0px auto;
-  max-width: 1200px;
 }
 
 #scrolly{
@@ -87,21 +91,12 @@ li {
 }
 
 .custom-quote {
-  width:50%;
-  max-width:250px;
-  min-height: 100vh;
-  text-align: left;
-  position: relative;
-  padding: 10px 40px;
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 3rem;
   font-weight:400;
-  opacity: 0; 
-  will-change: opacity;
-  display:block;
-  align-content:center;
+  color: #ffffff;
+  text-align: center;
 }
-
 .chart-title {
   margin: 0 0 8px 0;
   font-size: 16px;
@@ -171,8 +166,20 @@ article {
   pointer-events: none; /* Mouse wheel passes through to background */
 }
 
+.scroll-steps {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Takes up exact height of all steps combined without pushing content below */
+  height: 100%; 
+  pointer-events: none; /* Prevents invisible steps from blocking clicks on your stage */
+  z-index: 2;
+}
+
+
 .step {
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,7 +195,7 @@ article {
 }
 
 .step.align-right {
-  max-width:300px;
+  max-width:400px;
   margin-left: auto;
   margin-right: 1%;
   text-align: left;
@@ -197,14 +204,17 @@ article {
 
 .step p, .step h2 {
   width:50%;
-  max-width:300px;
+  max-width:450px;
   margin-left: auto;
-  margin-right: 1%;
+  margin-right: 0%;
   text-align: left;
   opacity: 0; 
+  padding:20px;
   will-change: opacity;
   display:block;
   box-sizing:border-box;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
 .step-left p, .step-left h2 {
@@ -238,8 +248,8 @@ article {
 }
 
 .chart-b-wrapper {
-  width: 70%;
-  max-width: 900px;
+  width: 63%;
+  max-width: 800px;
   margin: 0;   
   padding-top:0;
   padding-bottom:0;           
@@ -253,7 +263,7 @@ article {
 
 .chart-c-wrapper {
   width: 90%;
-  max-width: 900px;
+  max-width: 920px;
   margin: 0;   
   padding-top:0;
   padding-bottom:0;           
@@ -266,8 +276,8 @@ article {
 }
 
 .chart-d-wrapper {
-  width: 60%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 1440px;
   margin: 0;   
   padding-top:20vh;
   padding-bottom:0;           
@@ -318,9 +328,8 @@ article {
 
 
 #chart-b-container {
+  padding: 40px 0 300px 0;
   width: 100%;
-  height: 55vh; 
-  min-height: 350px;
   position: relative;
 }
 
@@ -394,27 +403,75 @@ article {
 }
 
 .section{
-  max-width:1000px;
+  width: 100%;
+  max-width:1160px;
+  min-height:1.1vh;
+  text-align: left;
+  align-self:flex-start;
   position:relative;
-  margin:0px;
-  padding:15px;
+  margin:120px auto;
   display:grid;
+  justify-content:center;
   grid-template-columns:1fr;
   min-height:100vh;
-  align-content:center;
   grid-template-rows:auto;
   gap:16px;
+  clear:both;
 }
 
+.section-inner {
+  max-height:90vh;
+}
+
+.sectionleft{
+  width: 100%;
+  max-width: 1160px;
+  position: relative;
+  margin: 0;               
+  padding: 20px;
+  box-sizing: border-box;      
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  align-self:flex-start;     
+  justify-items: left;     
+  grid-template-rows: auto;
+  gap: 16px;
+}
+
+.section-outer {
+  width:100%;
+  min-height:1.1vh;
+  display: flex;
+  justify-content: center;
+  padding:40px 0 40px;
+  background-color:#d5dae6;
+  clear:both;
+}
+
+.section-outer2 {
+  width:100%;
+  min-height:1.1vh;
+  display: flex;
+  justify-content: center;
+  padding:40px 0 40px;
+  background-color:#E1E3E8;
+  clear:both;
+}
+
+
+
 .sectionB{
-  max-width:1000px;
+  width: 100%;
+  max-width:1160px;
+  text-align: left;
+  align-self:flex-start;
   position:relative;
-  margin:0px;
-  padding:15px;
+  margin:0 auto;
+  padding:20px;
   display:grid;
   grid-template-columns:1fr;
   min-height:100vh;
-  align-content:center;
   grid-template-rows:auto;
   gap:16px;
 }
@@ -425,9 +482,20 @@ article {
   margin: 0px;
   display: block;
   max-width: 800px;
-  padding-top: 20px;
+  padding-top: 60px;
   padding-bottom: 20px;
-  background-color:#ffffff;
+  z-index: 3;
+  text-align: left;
+}
+
+.intro-step-d {
+  min-height: unset !important;
+  height: auto !important;
+  margin: 0px;
+  display: block;
+  max-width: 1440px;
+  padding-top: 60px;
+  padding-bottom: 20px;
   z-index: 3;
   text-align: left;
 }
@@ -440,7 +508,6 @@ article {
   max-width: 1000px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color:#ffffff;
   z-index: 3;
   text-align: left;
 }
@@ -454,17 +521,20 @@ svg {
 
 #chartB-svg {
   max-width: 100%;
+  overflow:visible;
   height:auto;
   display:block;
   align-self:flex-start;
 }
 
 #chartD {
-  max-width: 100%;
+  width: 100%;
+  max-width: 925px; 
+  margin: 0 ;
+  overflow: visible;
   height:auto;
   display:block;
   align-self:flex-start;
-  overflow:visible;
 }
 
 #chart-e {
@@ -485,10 +555,10 @@ svg {
 .chart-container {
   max-width: 100%;
   display:flex;
-  justify-content: center;
+  align-self:flex-start;
   flex-direction: column;
   height:auto;
-  margin:0 auto;
+  margin:0;
   overflow:visible;
 }
 
@@ -509,19 +579,21 @@ svg {
 
 .scroll-container {
   position: relative;
+  justify-content:center;
   width: 100%;
-  clear: both; /* Prevents floating element overlaps */
+  clear: both; 
+  overflow:hidden;
 }
 
 .pin-wrap {
-  position: relative;
-  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding-top: 0; /* Clear this so it doesn't push drawing down */
 }
   .stage {
   position: relative;
@@ -545,6 +617,18 @@ svg {
   }
   .drawing.active { opacity: 1; }
 
+  .slide {
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
   #intro {
   height: 100dvh;
   position: relative !important;
@@ -554,7 +638,7 @@ svg {
   align-items: center !important;    /* Centers h2 horizontally */
   box-sizing: border-box;
   padding: 0 2rem;
-  margin: 0;
+  margin: 0 auto;
 }
 
 #intro h2 {
@@ -565,7 +649,7 @@ svg {
 
 #intro h3.scroll-prompt {
   position: absolute !important;
-  bottom: 20px !important;
+  bottom: 50px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   margin: 0 !important;
@@ -573,10 +657,11 @@ svg {
 
 
 .textmain {
-  width: 90%;
-  max-width:1200px;
-  padding:5px;
-  margin:0;
+  width: 60%;
+  max-width: 920px;
+  padding:0px;
+  margin:0 ! important;
+  align-self:flex-start ! important;
 }
 
 
@@ -604,4 +689,22 @@ svg {
 .caption a {
   font-weight: 400;
   color: #777777;
+}
+
+.curtain-section {
+  position: relative;
+  z-index: 10; 
+  min-height: 100vh;
+  background-color: #1a1a1a; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3); /* Subtle top shadow for depth */
+}
+
+.curtain-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
