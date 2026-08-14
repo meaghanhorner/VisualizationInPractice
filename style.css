@@ -105,6 +105,15 @@ li {
   color: #ffffff;
   text-align: center;
 }
+
+.custom-quote-virginia {
+  font-style: italic;
+  font-size: 3rem;
+  font-weight:400;
+  color: #000000;
+  text-align: center;
+}
+
 .chart-title {
   margin: 0 0 8px 0;
   font-size: 16px;
@@ -697,6 +706,9 @@ svg {
   overflow:hidden;
 }
 
+
+
+
 .pin-wrap {
   position: sticky;
   top: 0;
@@ -882,6 +894,24 @@ svg {
   padding: 80px 20px;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3); /* Subtle top shadow for depth */
 }
+
+.curtain-section-virginia {
+  position: relative;
+  z-index: 10; 
+  min-height: 100vh;
+  margin-top:-100vh;
+  background-image:url("images/virginia-bg.jpg");
+  background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  background-color: #E1E3E8; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3); /* Subtle top shadow for depth */
+}
+
 
 
 .curtain-content {
