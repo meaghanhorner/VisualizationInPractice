@@ -59,14 +59,19 @@ ScrollTrigger.getAll().forEach(t => t.kill());
 
 /* opacity control on scrollies */
 gsap.utils.toArray(".step p, .step-left p, .custom-quote").forEach((stepCard, i) => {
-  gsap.to(stepCard, {
-    opacity: 1,
-      duration: 0.4,
+  gsap.fromTo(stepCard, 
+    { 
+      opacity: 0, 
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
       ease: "power1.out",
       scrollTrigger: {
         trigger: stepCard,
-        start: "top 95%",
-        end: "bottom 45%",
+        start: "top 90%",
+        end: "bottom 40%", 
         toggleActions: "play reverse play reverse",
         refreshPriority: -i, 
         markers: false
@@ -1068,7 +1073,7 @@ ScrollTrigger.create({
   trigger: ".scroll-container",  /* Trigger from the outer wrapper */
   pin: ".pin-wrap",              /* Pin the wrapper, not just the inner stage */
   start: "top top",              /* Locks in place right as it hits top of viewport */
-  end: "+=300%",                /* Gives 3 full viewports of scroll runway */
+  end: "+=400%",                /* Gives 3 full viewports of scroll runway */
   pinSpacing: true,              /* CRITICAL: GSAP pushes down the next section automatically */
   scrub: false,
   onUpdate: (self) => {

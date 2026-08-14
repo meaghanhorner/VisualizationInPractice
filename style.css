@@ -181,7 +181,7 @@ article {
   position: relative;
   grid-area: 1 / 1;
   z-index: 2;
-  pointer-events: none; /* Mouse wheel passes through to background */
+  pointer-events: none; 
 }
 
 .scroll-steps {
@@ -189,12 +189,15 @@ article {
   top: 0;
   left: 0;
   width: 100%;
-  /* Takes up exact height of all steps combined without pushing content below */
-  height: 100%; 
-  pointer-events: none; /* Prevents invisible steps from blocking clicks on your stage */
+  height: auto;
+  min-height: 100%;
+  pointer-events: none; 
   z-index: 2;
 }
 
+.scroll-steps .step[data-index="2"] {
+  padding-bottom: 100vh;
+}
 
 .step {
   min-height: 50vh;
@@ -207,7 +210,7 @@ article {
 }
 
 .step-pause {
-  min-height: 200vh; 
+  min-height: 160vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,7 +218,7 @@ article {
 
 .step-pause .step {
   position: sticky;
-  top: 65%;
+  top: 60%;
   transform: translateY(-50%);
 }
 
@@ -924,3 +927,4 @@ background-repeat: no-repeat;
   max-width: 1160px;
   Padding: 20px;
 }
+
