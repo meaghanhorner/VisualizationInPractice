@@ -65,7 +65,7 @@ gsap.utils.toArray(".step p, .step-left p, .custom-quote").forEach((stepCard, i)
       ease: "power1.out",
       scrollTrigger: {
         trigger: stepCard,
-        start: "top 75%",
+        start: "top 95%",
         end: "bottom 45%",
         toggleActions: "play reverse play reverse",
         refreshPriority: -i, 
@@ -251,58 +251,6 @@ chartB.path = d3.geoPath(chartB.projection);
       tooltip.style("visibility", "hidden");
     });
 
-
-      chartB.buildLegend = function() {
-        const legendW = 200, legendH = 10;
-        const defs = chartB.svg.select("defs").empty()
-        ? chartB.svg.append("defs")
-        : chartB.svg.select("defs");
-
-        chartB.legendGroup = chartB.g.append("g")
-          .attr("class", "chartB-legend")
-          .attr("transform", `translate(${chartB.width*.50}, ${chartB.height*1})`);
-
-        chartB.legendGradient = defs.append("linearGradient")
-          .attr("id", "chartB-legend-gradient")
-          .attr("x1", "0%").attr("x2", "100%")
-          .attr("y1", "0%").attr("y2", "0%");
-
-        chartB.legendGroup.append("rect")
-          .attr("width", legendW)
-          .attr("height", legendH)
-          .style("fill", "url(#chartB-legend-gradient)");
-
-        chartB.legendAxisG = chartB.legendGroup.append("g")
-          .attr("transform", `translate(0, ${legendH})`);
-
-        chartB.legendLabel = chartB.legendGroup.append("text")
-          .attr("y", -6)
-          .attr("font-size", 14)
-          .style("font-family", "'Urbanist', sans-serif")
-          .attr("font-weight", 600);
-
-          chartB.updateLegend();
-        };
-
-      chartB.updateLegend = function() {
-  const scale = chartB.colorUS;
-  const interp = d3.interpolateBlues;
-  const [min, max] = scale.domain();
-
-  const stops = d3.range(0, 1.01, 0.1);
-  chartB.legendGradient.selectAll("stop")
-    .data(stops)
-    .join("stop")
-    .attr("offset", (d) => `${d * 100}%`)
-    .attr("stop-color", (d) => interp(d));
-
-  const legendScale = d3.scaleLinear().domain([min, max]).range([0, 200]);
-  const axis = d3.axisBottom(legendScale).ticks(4).tickSize(4).tickFormat(d3.format(","));
-  chartB.legendAxisG.call(axis);
-
-  chartB.legendLabel.text("Total data centers");
-};
-
       const pjmFeatures = states.filter((d) => chartB.pjmStates.has(d.abbr));
 const pjmCollection = { type: "FeatureCollection", features: pjmFeatures };
 
@@ -322,7 +270,6 @@ chartB.pjmZoomTarget = {
   x: chartB.width / 2 - scale * cx,
   y: chartB.height / 2 - scale * cy
 };
-      chartB.buildLegend();
       return chartB;
 
 
@@ -395,12 +342,84 @@ chartB.showPJM = function(duration = 1.2) {
   });
 };
 
+chartB.buildLegend = function() {
+  const legendW = 200, legendH = 10;
+  const margin = { top: 20, right: 15, bottom: 25, left: 15 };
+  const totalW = legendW + margin.left + margin.right;
+  const totalH = legendH + margin.top + margin.bottom;
+
+  // 1. Get container
+  const target = document.getElementById("chart-b-legend");
+  if (!target) {
+    console.error("DOM element #chart-b-legend does not exist.");
+    return;
+  }
+
+  // 2. Clear target & append root SVG
+  target.innerHTML = "";
+  const legendSvg = d3.select(target)
+    .append("svg")
+    .attr("width", totalW)
+    .attr("height", totalH)
+    .attr("viewBox", `0 0 ${totalW} ${totalH}`);
+
+  // 3. Add Defs
+  const defs = legendSvg.append("defs");
+  chartB.legendGradient = defs.append("linearGradient")
+    .attr("id", "chartB-legend-gradient")
+    .attr("x1", "0%").attr("x2", "100%")
+    .attr("y1", "0%").attr("y2", "0%");
+
+  // 4. Create Group (assigned to local variable first to guarantee validity)
+  const group = legendSvg.append("g")
+    .attr("class", "chartB-legend")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+  // Assign back to namespace
+  chartB.legendGroup = group;
+
+  // 5. Append rect to local variable
+  group.append("rect")
+    .attr("width", legendW)
+    .attr("height", legendH)
+    .style("fill", "url(#chartB-legend-gradient)");
+
+  chartB.legendAxisG = group.append("g")
+    .attr("transform", `translate(0, ${legendH})`);
+
+  chartB.legendLabel = group.append("text")
+    .attr("y", -6)
+    .attr("font-size", 12)
+    .style("font-family", "'Urbanist', sans-serif")
+    .attr("font-weight", 600);
+
+  chartB.updateLegend();
+};
+
+chartB.updateLegend = function() {
+  const scale = chartB.colorUS;
+  const interp = d3.interpolateBlues;
+  const [min, max] = scale.domain();
+
+  const stops = d3.range(0, 1.01, 0.1);
+  chartB.legendGradient.selectAll("stop")
+    .data(stops)
+    .join("stop")
+    .attr("offset", (d) => `${d * 100}%`)
+    .attr("stop-color", (d) => interp(d));
+
+  const legendScale = d3.scaleLinear().domain([min, max]).range([0, 200]);
+  const axis = d3.axisBottom(legendScale).ticks(4).tickSize(4).tickFormat(d3.format(","));
+  chartB.legendAxisG.call(axis);
+
+  chartB.legendLabel.text("Total data centers");
+};
 
 /* chart c */
 
 (function() {
-  const margin = {top:30, right: 300, bottom: 250, left: 35},
-  width = 960 - margin.left - margin.right,
+  const margin = {top:30, right: 600, bottom: 450, left: 50},
+  width = 1160 - margin.left - margin.right,
   height = 900 - margin.top - margin.bottom;
 
   const svg = d3.select("#chartC")
@@ -536,7 +555,7 @@ const chartD = {
             d.date <= new Date("2046-12-31")
         },
         4: {
-          xDomain: [new Date("2015-01-01"), d3.max(this.data, (d) => d.date)],
+          xDomain: [new Date("2015-01-01"), new Date("2046-12-31")],
           filterFn: () => true
         }
       };
@@ -580,7 +599,6 @@ const chartD = {
       .duration(750)
       .call(d3.axisBottom(this.xScale).ticks(8));
 
-    // --- Line Paths Data Join ---
     const paths = this.svg.selectAll(".series-line").data(grouped, (d) => d.key);
 
     paths
@@ -590,7 +608,7 @@ const chartD = {
       .style("opacity", 0)
       .remove();
 
-    paths
+    const pathsEnter = paths
       .enter()
       .append("path")
       .attr("class", (d) => `series-line line-${d.key.replace(/\s+/g, "-").toLowerCase()}`)
@@ -598,14 +616,15 @@ const chartD = {
       .attr("stroke", (d) => this.colorScale(d.key))
       .attr("stroke-width", (d) => (d.key.includes("Historical") ? 2.5 : 2))
       .attr("stroke-dasharray", (d) => (d.key.includes("Historical") ? "none" : "4 4"))
-      .style("opacity", 0)
+      .style("opacity", 0);
+
+    pathsEnter
       .merge(paths)
+      .attr("d", (d) => this.lineGenerator(d.values)) 
       .transition()
       .duration(750)
-      .style("opacity", 1)
-      .attr("d", (d) => this.lineGenerator(d.values));
+      .style("opacity", 1); 
 
-    // --- End Labels Data Join ---
     const labels = this.svg.selectAll(".series-label").data(grouped, (d) => d.key);
 
     labels
@@ -615,7 +634,7 @@ const chartD = {
       .style("opacity", 0)
       .remove();
 
-    labels
+    const labelsEnter = labels
       .enter()
       .append("text")
       .attr("class", "series-label")
@@ -624,11 +643,10 @@ const chartD = {
       .style("font-size", "12px")
       .style("font-weight", "600")
       .style("font-family", "sans-serif")
-      .style("opacity", 0)
+      .style("opacity", 0);
+
+    labelsEnter
       .merge(labels)
-      .transition()
-      .duration(750)
-      .style("opacity", 1)
       .attr("x", (d) => {
         const lastPoint = d.values[d.values.length - 1];
         return this.xScale(lastPoint.date) + 8;
@@ -637,25 +655,30 @@ const chartD = {
         const lastPoint = d.values[d.values.length - 1];
         return this.yScale(lastPoint.value);
       })
-      .text((d) => d.key);
+      .text((d) => d.key)
+      .transition()
+      .duration(750)
+      .style("opacity", 1); // Only transition opacity
+
   },
 
   initScrollySteps: function () {
     // Falls back gracefully if .sectionD class isn't on outer div
-    const stepElements = document.querySelectorAll(".sectionD .step").length
-      ? document.querySelectorAll(".sectionD .step")
-      : document.querySelectorAll(".scrolly-steps .step");
+    const stepElements = document.querySelectorAll(".sectionD .step-pause").length
+      ? document.querySelectorAll(".sectionD .step-pause")
+      : document.querySelectorAll(".scrolly-steps .step-pause");
 
-    stepElements.forEach((stepEl) => {
-      const stepNum = +stepEl.dataset.step;
+    stepElements.forEach((wrapperEl) => {
+    const stepEl = wrapperEl.querySelector(".step");
+    const stepNum = +stepEl.dataset.step;
 
-      ScrollTrigger.create({
-        id: "d",
-        trigger: stepEl,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => this.setStage(stepNum),
-        onEnterBack: () => this.setStage(stepNum)
+    ScrollTrigger.create({
+      id: "d",
+      trigger: wrapperEl,
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => this.setStage(stepNum),
+      onEnterBack: () => this.setStage(stepNum)
       });
     });
 
@@ -690,8 +713,8 @@ function drawChartE(dataE, fillScale) {
 
   const margin = { top: 60, right: 140, bottom: 60, left: 70 };
   const gap = 50;
-  const totalWidth = 1100;
-  const totalHeight = 550;
+  const totalWidth = 1300;
+  const totalHeight = 600;
 
   const facetWidth = (totalWidth - margin.left - margin.right - gap) / 2;
   const height = totalHeight - margin.top - margin.bottom;
@@ -857,8 +880,8 @@ Promise.all([
 
 function drawChartG(dataG){
   const margin = {top: 20, right: 150, bottom: 100, left:20 };
-  const width = 1000 - margin.left - margin.right;
-  const height = 600 - margin.top - margin.bottom;
+  const width = 890 - margin.left - margin.right;
+  const height = 500 - margin.top - margin.bottom;
 
   const columns = 4;
   const rows = 4;
@@ -901,7 +924,7 @@ function drawChartG(dataG){
 
 const colorScale = d3.scaleLinear()
   .domain([0, d3.max(dataG, d =>d.summary.pct_increase)])
-  .range(["#ffffff", "#ff8787"])
+  .range(["#ffffff", "#ff9e9e"])
   .clamp(true);
 
   facet.append("rect")
@@ -921,7 +944,7 @@ const colorScale = d3.scaleLinear()
   facet.append("text")
     .attr("x", 20)
     .attr("y", 20)
-    .style("font-size", "14px")
+    .style("font-size", "12px")
     .style("font-family", "'Urbanist', sans-serif")
     .text(d => d.state);
   
@@ -949,7 +972,7 @@ const colorScale = d3.scaleLinear()
     .attr("text-anchor", "start")
     .style("font-size", "11px")
     .style("font-family", "'Urbanist', sans-serif")
-    .style("fill", "#810808")
+    .style("fill", "#540505")
     .text(d =>  `${d.summary.start_value}¢`); 
 
   facet.append("text")
@@ -958,14 +981,14 @@ const colorScale = d3.scaleLinear()
     .attr("text-anchor", "end")
     .style("font-size", "11px")
     .style("font-family", "'Urbanist', sans-serif")
-    .style ("fill", "#810808")
+    .style ("fill", "#540505")
     .text( d => `${d.summary.end_value}¢`);
 
   facet.append("text")
     .attr("x", facetWidth - facetMargin.right)
     .attr("y", facetHeight - 30)
     .attr("text-anchor", "end")
-    .style("font-size", "16px")
+    .style("font-size", "14px")
     .style("font-family", "'Urbanist', sans-serif")
     .style("font-weight", "bold")
     .style("fill", d => d.summary.pct_increase >0 ? "#810000" : "steelblue")
