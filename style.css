@@ -919,3 +919,8 @@ background-repeat: no-repeat;
   margin: 0 auto;
   text-align: center;
 }
+
+.methodology {
+  max-width: 1160px;
+  Padding: 20px;
+}

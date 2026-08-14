@@ -7,15 +7,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;800&family=Yuyu&family=Noto+Sans:ital,wght@100;400;600;700&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Methodology</title>
 </head>
 <body>
 
   <main>
 
-<div class = "methodology"></div>
-    <h2>coming soon</h2></div>
-
+<div class = "methodology"><h2>Methodology</h2>
+<p>To determine exactly how much increased temperatures due to climate change would impact power demand:
+  <p>First, I identified the most populated metro areas in the PJM service area: Baltimore, MD; Chicago, Il; Pittsburgh, PA; Philadelphia, PA; and Washington, D.C., and downloaded historical CDD (cooling degree days) at 65&deg; and 75&deg;</p>
+  <p>I used daily demand logs from PJM to collect daily electricity use data over the entire PJM service area.</p>
+  <p>Each metro area was assigned a weight based on its population. I used this weight to convert city-level monthly CDDs into a single regional temperature index reflecting cooling demand for the month across the entire region.</p>
+  <p>For future climate scenarios, I pulled long-term climate projections from NOAA for two possible scenarios: Moderate Warming (RCP 4.5) and High Warming (RCP 8.5).</p>
+  <p>Because NOAA's projections use a 65&deg; baseline (CDD65) and higher grid stress occurs at elevated temperatures, I wanted to use a 75&deg; baseline (CDD75). I used historic ratios of 65CDD to 75CDD to estimate projected CDDs at the 75&deg; threshold.</p>
+  <p>Using the PJM historical demand data alongside the historical weather data, I calculated a 'cooling slope' which represents how much electricity demand rises as temperatures climb over 75&deg;.</p>
+  <P>I plotted PJM's official estimated demand baseline (the grey dashed line). To isolate their implicit estimated cooling factor, ooling factor' I subtracted April demand (where cooling or heating costs are minimal) from July demand.</P>
+  <p>Finally, I took PJM's estimated July demand, subtracted my calculated cooling factor, and instead added in my estimated cooling factor, using my estimated CDD75 for the region and my calculated cooling slope.</p>
+</p>
+</div>
 </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.umd.min.js"></script>
    <script src="https://unpkg.com/scrollama"></script>
