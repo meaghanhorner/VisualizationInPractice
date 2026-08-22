@@ -817,8 +817,8 @@ function drawChartE(dataE, fillScale) {
   const isMobile = window.innerWidth < 768;
 
   const margin = isMobile 
-    ? { top: 50, right: 20, bottom: 50, left: 60 }
-    : { top: 60, right: 140, bottom: 60, left: 70 };
+    ? { top: 50, right: 20, bottom: 50, left: 95 }
+    : { top: 60, right: 140, bottom: 60, left: 105 };
   const gap = isMobile ? 60 : 50;
 
   const totalWidth = isMobile ? window.innerWidth - 20 : 1300;
@@ -870,13 +870,16 @@ function drawChartE(dataE, fillScale) {
       .attr("transform", `translate(${margin.left}, ${margin.top})`)
       .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
     yAxisG.select(".domain").remove();
+    yAxisG.selectAll("text")                   
+      .style("font-size", "16px")                  
+      .style("font-family", "'Urbanist', sans-serif"); 
 
     svg.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 20)
+      .attr("y", 15)
       .attr("x", -(margin.top + height / 2))
       .attr("text-anchor", "middle")
-      .style("font-size", "12px")
+      .style("font-size", "16px")
       .style("font-family", "'Urbanist', sans-serif")
       .style("font-weight", "600")
       .text("Capacity (MW)");
@@ -894,16 +897,18 @@ function drawChartE(dataE, fillScale) {
       .attr("x", facetWidth / 2)
       .attr("y", -20)
       .attr("text-anchor", "middle")
-      .style("font-size", "14px")
+      .style("font-size", "18px")
       .style("font-weight", "bold")
       .style("font-family", "'Urbanist', sans-serif")
       .text(facet.title);
 
-    // On mobile, add a y-axis to each stacked facet since they're not sharing one visual axis
     if (isMobile) {
       const facetYAxisG = chartG.append("g")
         .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
       facetYAxisG.select(".domain").remove();
+       facetYAxisG.selectAll("text")                     
+        .style("font-size", "14px")                        
+        .style("font-family", "'Urbanist', sans-serif");   
     }
 
     const facetData = dataE.filter(d => d.date_type === facet.key);
@@ -933,13 +938,16 @@ function drawChartE(dataE, fillScale) {
     chartG.append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x).tickFormat(d => d + "s"))
-      .call(g => g.select(".domain").remove());
+      .call(g => g.select(".domain").remove())
+      .call(g => g.selectAll("text")                        
+        .style("font-size", "16px")                          
+        .style("font-family", "'Urbanist', sans-serif"));    
 
     chartG.append("text")
       .attr("x", facetWidth / 2)
       .attr("y", height + 45)
       .attr("text-anchor", "middle")
-      .style("font-size", "11px")
+      .style("font-size", "18px")
       .style("font-family", "'Urbanist', sans-serif")
       .text("Decade of Initial Plant Operations");
   });
@@ -959,7 +967,7 @@ function drawChartE(dataE, fillScale) {
     row.append("text")
       .attr("x", 20)
       .attr("y", 11)
-      .style("font-size", "12px")
+      .style("font-size", "18px")
       .style("font-family", "'Urbanist', sans-serif")
       .text(fuel);
   });
