@@ -613,7 +613,9 @@ article {
   position: relative;
   width:100%;
   height:180vh;
+  min-height:100vh;
   display: flex;
+  flex-direction:column;
   justify-content: center;
   align-items: flex-start;
   padding:40px 0 60px;
@@ -636,8 +638,12 @@ article {
 
 .static-section-inner {
   position: sticky;
-  top:2vh;
-  min-height:80vh;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  top: 50vh;
+  transform: translateY(-50%);
+  min-height: 80vh;
   width: 100%;
   max-width: 1160px;
 }
