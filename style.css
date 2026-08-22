@@ -38,7 +38,7 @@ div{
 .scrolly-steps {
   position:relative;
   grid-area: 1 / 1;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   width: 100%;
   justify-self: stretch;
@@ -101,7 +101,7 @@ li {
 .custom-quote {
   font-style: italic;
   font-size: 3rem;
-  font-weight:400;
+  font-weight:700;
   color: #ffffff;
   text-align: center;
 }
@@ -109,7 +109,7 @@ li {
 .custom-quote-virginia {
   font-style: italic;
   font-size: 3rem;
-  font-weight:400;
+  font-weight:700;
   color: #000000;
   text-align: center;
 }
@@ -153,7 +153,7 @@ li {
   width:100%;
   min-height:90vh;
   max-height:100vh;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -196,7 +196,7 @@ article {
 }
 
 .scroll-steps .step[data-index="2"] {
-  padding-bottom: 100vh;
+  padding-bottom: 1vh;
 }
 
 .step {
@@ -206,21 +206,79 @@ article {
   flex-direction: column;
   justify-content: center;
   align-items:center;
-  pointer-events: auto;
 }
 
+
+
 .step-pause {
-  min-height: 160vh; 
+  min-height: 120vh; 
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index:11;
+  width: 40vw;
+  min-width:600px;
+  max-height: 130vh;
 }
 
-.step-pause .step {
+.step-pause .step-d {
+  position: sticky;
+  top: 45vh;             
+  transform: translateY(-50%);
+}
+
+.sticky-graphic-d {
+  grid-area: 1 / 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 90vh;
+  max-height: 100vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.step-d {
+  min-height: 50vh;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.step-d p, .step-d h2 {
+  width: 50%;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: 0%;
+  text-align: left;
+  opacity: 0;
+  padding: 20px;
+  will-change: opacity;
+  display: block;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.step-d.is-active {
+  opacity: 1;
+}
+
+.step-d:last-child {
+  margin-bottom: 0vh;
+}
+
+/* .step-pause .step-d {
   position: sticky;
   top: 60%;
   transform: translateY(-50%);
-}
+} */
+
 
 .step.align-left {
   max-width: 300px;
@@ -250,6 +308,7 @@ article {
   box-sizing:border-box;
   background-color: #ffffff;
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+  pointer-events:auto;
 }
 
 .step-left p, .step-left h2 {
@@ -288,6 +347,7 @@ article {
   max-height: 65vh;
   margin: 0;   
   padding-top:0;
+  padding-right:100px;
   padding-bottom:0;           
   text-align: left;    
   display: flex;
@@ -312,6 +372,7 @@ article {
 }
 
 .chart-d-wrapper {
+  position:sticky;
   width: 100%;
   max-width: 1440px;
   max-height:70vh;
@@ -389,7 +450,25 @@ article {
   color: #111;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: opacity 0.1s ease-out;
+  overflow:visible;
 }
+
+.chartC-tooltip {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85rem;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.1s ease-out;
+}
+
 
 .tooltip-title {
   font-weight: 700;
@@ -431,7 +510,7 @@ article {
 
 }
 
-#chart-d-container {
+/* #chart-d-container {
   flex: 1; 
   width: 65%;
   height: auto;
@@ -440,7 +519,7 @@ article {
   justify-content:center;
   display: flex;
   flex-direction: column;
-}
+} */
 
 .section{
   width: 100%;
@@ -685,7 +764,8 @@ svg {
   }
 
   .step-spacer {
-  min-height: 100vh;
+  min-height: 45vh;
+  background-color:#ffffff;
 }
 
 
@@ -693,12 +773,19 @@ svg {
   position: relative;
   width: 100%;
   margin:0 auto;
+  display:flex;
+  flex-direction:column;
 }
 
 .scrolly-container-d {
   position: relative;
   width: 100%;
   margin:0 auto;
+  min-width:0;
+}
+
+.scrolly-container-d > * {
+  min-width: 0;
 }
 
 .scroll-container {
@@ -798,8 +885,7 @@ svg {
   margin-left: 0;               
   margin-right: auto;
   margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 5px;                 
+  margin-bottom: 5px;             
   text-align: left;
   height: auto;                 
   background-color:#d5dae6;
@@ -809,7 +895,7 @@ svg {
 
 .caption-tall {
   display: block;
-  width: 100%;                  
+  width: 90%;                  
   margin-left: 0;               
   margin-right: auto;
   margin-top: 5px;
@@ -838,16 +924,16 @@ svg {
 }
 
 .caption p {
-  padding:0px;
+  padding:0 200px 0 0;
   margin:0px;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size:.7rem;
+  font-size:.8rem;
   text-align:left;
 }
 
 .caption a {
   font-weight: 400;
-  color: #777777;
+  color: #444444;
 }
 
 .caption-tall p {
@@ -928,3 +1014,397 @@ background-repeat: no-repeat;
   Padding: 20px;
 }
 
+
+.img-cycle {
+  position: relative;
+  width: 100%;
+  max-height:70vh;
+  height:70vh;
+}
+.cycle-img {
+  position: absolute;
+   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 70vh;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+.cycle-img.active {
+  opacity: 1;
+}
+
+#lottie-container {
+   width: 100%;
+  max-width: 800px;
+  aspect-ratio: 886/727;
+  height: auto;
+  margin: 0 auto;  
+}
+
+#lottie-container svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+@media (max-width: 767px) {
+    .section-outer {
+    height: auto;
+    overflow: visible;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    min-height:10vh;
+  }
+
+   .sectionB {
+    height: auto;
+    min-height: 10vh;
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
+    .sectionD-outer {
+    height: auto;
+    overflow: visible;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+  }
+
+ .sectionD-inner {
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
+  .scrolly-container {
+    position: relative;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+ .scrolly-container-d {
+    position: relative;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+ .intro-step-d {
+    height: 20vh;
+    min-height: 20vh;
+    overflow: hidden;
+    position: relative;
+    pointer-events: auto;
+    margin: 0px;
+    display: block;
+    padding: 2vh;
+    z-index: 3;
+    text-align: left;
+  }
+
+
+
+  .sticky-graphic {
+    grid-area: 1 / 1;
+    align-self: start;
+    position: relative;
+    height: 140vh;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .sticky-graphic-d {
+    grid-area: 1 / 1;
+    align-self: start;
+    position: relative;
+    height: 280vh;
+    max-height:280vh;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .intro-step {
+   height: 20vh;
+   min-height: 20vh;
+   overflow:hidden;
+    position: relative;
+    pointer-events: auto;
+    margin: 0px;
+    display: block;
+    padding: 2vh;
+    z-index: 3;
+    text-align: left;
+  }
+
+  .chart-b-wrapper {
+    position: sticky;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    background: #d5dae6;
+    height: 45vh;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+   .chart-d-wrapper {
+    position: sticky;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    background: #d5dae6;
+    height: 35vh;
+    overflow: hidden;
+    pointer-events: auto;
+    align-items:stretch;
+  }
+
+#chartD {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  #chartD svg {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+  .chart-header {
+    flex-shrink: 0; 
+  }
+  .chart-header h3 {
+    font-size: 0.95rem;
+  }
+  .chart-header h5,
+  .chart-header h6 {
+    font-size: 0.75rem;
+  }
+
+  #chart-b-container {
+    flex: 1 1 auto; 
+    min-height: 0; 
+    max-height: none;
+    overflow: visible;
+  }
+
+  #chart-b-container svg {
+    width: 100%;
+  height: 100%;
+  display: block;
+  }
+
+
+  .caption-tall {
+    margin-top:-60px;
+    height: 20px;
+    width: 230px;
+    font-size: 0.8rem;
+  }
+
+  .caption {
+    padding: 0;
+     overflow-wrap: break-word;
+  word-break: break-word;
+  }
+
+  .caption-2 {
+    padding: 0;
+     overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+  .caption p {
+    padding: 0px;
+     overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.caption a {
+  padding: 0px;
+   overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+  .scrolly-steps {
+    padding-top: 70vh;
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    pointer-events: auto;
+    justify-self:auto;
+  }
+
+  .step {
+    box-sizing: border-box;
+    padding: 1.5rem;
+    min-height: 0px;
+    max-width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #ffffff;
+  }
+
+  .step p {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: none;
+    min-height: 0px;
+  }
+
+  .step:last-child {
+  margin-bottom: 0vh;
+}
+
+
+  .step-pause {
+    box-sizing: border-box;
+    padding: 1.5rem;
+    min-height: 0px;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 300px;
+    margin-top: 0 !important; /* overrides the -200vh inline style on step 1 */
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #ffffff;
+  }
+
+.step-pause p {
+  
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: none;
+    min-height: 0px;
+}
+
+  .step-d {
+    opacity:1;
+    min-height:0;
+  }
+
+  .step-d p, .step-d h2 {
+  width: 95%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.custom-quote {
+  font-style: italic;
+  font-size: 2rem;
+  font-weight:700;
+  text-align: center;
+}
+
+.custom-quote-virginia {
+  font-style: italic;
+  font-size: 2rem;
+  font-weight:700;
+  color: #000000;
+  text-align: center;
+}
+
+.drawing {
+    position: absolute;
+    margin-left: -60px;
+    margin-top: -50px;
+    top: 0;
+    left: 0;
+    width: 135%;
+    height: 135%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+.textmain {
+  width: 100%;
+}
+
+.static-section-outer2 {
+  padding-top:1vh;
+  height: auto;
+}
+
+.static-section-inner {
+  padding-top:1vh;
+  height: auto;
+  min-height: 0vh;
+}
+
+.chart-c-wrapper { 
+    width: 100%;
+    display: flex;
+    min-height: 0; 
+    max-height: none;
+    overflow: visible;
+  }
+
+.chart-container {
+    min-height: 0; 
+    max-height: none;
+    overflow: visible;
+    max-width: 100%;
+  }
+
+  .chart-container svg {
+    width: 100%;
+  height: 100%;
+  display: block;
+  }
+
+  #chartC {
+  width: 100%;
+  height: auto;
+  min-height: 0;   
+  overflow: visible;
+}
+
+  #chartC svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+.step-spacer {
+  height:0vh;
+}
+
+.step p, .step-left p, .custom-quote, .step-d p, .step-d h2 {
+  opacity:1 !important;
+}
+
+.static-section-inner {
+  padding:5px;
+}
+
+
+}

@@ -1,14 +1,13 @@
 gsap.registerPlugin(ScrollTrigger)
 
 const fadeDuration = 0.01;
-const displayTime = 0.12; // Slightly increased so each frame is crisp
+const displayTime = 0.12; 
 
-// 1. Set up an isolated 3-frame loop for EACH .drawing group
 document.querySelectorAll(".drawing").forEach((drawingEl) => {
   const slides = drawingEl.querySelectorAll(".slide");
   if (!slides.length) return;
 
-  // Set initial frame visible
+  
   gsap.set(slides, { opacity: 0 });
   gsap.set(slides[0], { opacity: 1 });
 
@@ -24,12 +23,12 @@ document.querySelectorAll(".drawing").forEach((drawingEl) => {
     ).to(
       slide,
       { opacity: 0, duration: fadeDuration, ease: "none" },
-      "<" // Start fading out the current slide simultaneously as next fades in
+      "<" 
     );
   });
 });
 
-// 2. Switch .active drawing group on scroll
+
 const drawings = document.querySelectorAll(".drawing");
 
 document.querySelectorAll(".step").forEach((stepEl) => {
@@ -55,29 +54,69 @@ function setActiveDrawing(index) {
 }
 
 
+
+// ScrollTrigger.getAll().forEach(t => t.kill());
+
+// gsap.utils.toArray(".step p, .step-left p, .custom-quote, .step-d p, .step-d h2").forEach((stepCard, i) => {
+//   gsap.fromTo(stepCard, 
+//     { opacity: 0 },
+//     {
+//       opacity: 1,
+//       y: 0,
+//       duration: 0.6,
+//       ease: "power1.out",
+//       scrollTrigger: {
+//         trigger: stepCard,
+//         start: "top 90%",
+//         end: "bottom 40%", 
+//         toggleActions: "play reverse play reverse",
+//         refreshPriority: -i,
+//         markers: false
+//       }
+//     }
+//   );
+//});
+
+
 ScrollTrigger.getAll().forEach(t => t.kill());
 
-/* opacity control on scrollies */
-gsap.utils.toArray(".step p, .step-left p, .custom-quote").forEach((stepCard, i) => {
-  gsap.fromTo(stepCard, 
-    { 
-      opacity: 0, 
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: stepCard,
-        start: "top 90%",
-        end: "bottom 40%", 
-        toggleActions: "play reverse play reverse",
-        refreshPriority: -i, 
-        markers: false
-      }
-    }
-  );
+ScrollTrigger.matchMedia({
+
+  "(min-width: 768px)": function() {
+    gsap.utils.toArray(".step p, .step-left p, .custom-quote, .step-d p, .step-d h2").forEach((stepCard, i) => {
+      gsap.fromTo(stepCard, 
+        { opacity: 0 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: stepCard,
+            start: "top 90%",
+            end: "bottom 40%", 
+            toggleActions: "play reverse play reverse",
+            refreshPriority: -i,
+            markers: false,
+          }
+        }
+      );
+    });
+  },
+
+  "(max-width: 767px)": function() {
+function syncStickyGraphicHeight() {
+  const steps = document.querySelector('.sectionD-inner .scrolly-steps');
+  const sticky = document.querySelector('.sectionD-inner .sticky-graphic-d');
+  if (steps && sticky) {
+    sticky.style.height = steps.scrollHeight + 'px';
+    ScrollTrigger.refresh();
+  }
+}
+syncStickyGraphicHeight();
+window.addEventListener('resize', syncStickyGraphicHeight);
+  }
+
 });
 
 window.addEventListener("load", () => {
@@ -119,7 +158,7 @@ chartB.init = async function (containerSelector, dataUrl){
 
 const containerNode = container.node();
 chartB.width = containerNode.getBoundingClientRect().width || 960;
-chartB.height = chartB.width * 0.58; // Standard ratio for Albers USA
+chartB.height = chartB.width * 0.58; 
 
 let tooltip = container.select(".chartB-tooltip");
   if (tooltip.empty()) {
@@ -219,8 +258,8 @@ chartB.path = d3.geoPath(chartB.projection);
     .join("path")
     .attr("class", "chartB-state")
     .attr("d", chartB.path)
-    .attr("stroke", "#515151")
-    .attr("stroke-width", 0.75)
+    .attr("stroke", "#1a1a1a")
+    .attr("stroke-width", 0.5)
     .attr("fill", (d) => {
       const rec = chartB.data.get(d.abbr);
       return rec ? chartB.colorUS(rec.total) : "#eee";
@@ -247,11 +286,29 @@ chartB.path = d3.geoPath(chartB.projection);
       `);
 
   
+      const containerBounds = container.node().getBoundingClientRect();
+      const tooltipNode = tooltip.node();
+      const tooltipWidth = tooltipNode.offsetWidth;
+      const tooltipHeight = tooltipNode.offsetHeight;
+
       const [mouseX, mouseY] = d3.pointer(event, container.node());
-      tooltip
-        .style("left", `${mouseX + 12}px`)
-        .style("top", `${mouseY - 12}px`);
-    })
+
+      const margin = 12;
+      const spaceRight = containerBounds.width - mouseX;
+
+      let left = spaceRight < tooltipWidth + margin
+    ? mouseX - tooltipWidth - margin
+    : mouseX + margin;
+
+  left = Math.max(4, Math.min(left, containerBounds.width - tooltipWidth - 4));
+
+  let top = mouseY - tooltipHeight - margin;
+  top = Math.max(4, top); 
+
+  tooltip
+    .style("left", `${left}px`)
+    .style("top", `${top}px`);
+})
     .on("pointerout", function () {
       tooltip.style("visibility", "hidden");
     });
@@ -353,14 +410,12 @@ chartB.buildLegend = function() {
   const totalW = legendW + margin.left + margin.right;
   const totalH = legendH + margin.top + margin.bottom;
 
-  // 1. Get container
   const target = document.getElementById("chart-b-legend");
   if (!target) {
     console.error("DOM element #chart-b-legend does not exist.");
     return;
   }
 
-  // 2. Clear target & append root SVG
   target.innerHTML = "";
   const legendSvg = d3.select(target)
     .append("svg")
@@ -368,22 +423,19 @@ chartB.buildLegend = function() {
     .attr("height", totalH)
     .attr("viewBox", `0 0 ${totalW} ${totalH}`);
 
-  // 3. Add Defs
   const defs = legendSvg.append("defs");
   chartB.legendGradient = defs.append("linearGradient")
     .attr("id", "chartB-legend-gradient")
     .attr("x1", "0%").attr("x2", "100%")
     .attr("y1", "0%").attr("y2", "0%");
 
-  // 4. Create Group (assigned to local variable first to guarantee validity)
   const group = legendSvg.append("g")
     .attr("class", "chartB-legend")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  // Assign back to namespace
   chartB.legendGroup = group;
 
-  // 5. Append rect to local variable
+
   group.append("rect")
     .attr("width", legendW)
     .attr("height", legendH)
@@ -423,16 +475,23 @@ chartB.updateLegend = function() {
 /* chart c */
 
 (function() {
-  const margin = {top:30, right: 600, bottom: 450, left: 50},
-  width = 1160 - margin.left - margin.right,
-  height = 900 - margin.top - margin.bottom;
+  const margin = {top:30, right: 60, bottom: 60, left: 70};
+  const width = 1160 - margin.left - margin.right;
+  const height = 900 - margin.top - margin.bottom;
+
+   const container = d3.select("#chartC"); 
 
   const svg = d3.select("#chartC")
     .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      const tooltip = container
+    .append("div")
+    .attr("class", "chartC-tooltip");
+
 
       d3.json("large-loads.json").then(function (data) {
         data.sort((a, b) => a.year - b.year);
@@ -447,14 +506,20 @@ chartB.updateLegend = function() {
         .call(d3.axisBottom(x))
         .selectAll("text")
           .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
+          .style("text-anchor", "end")
+          .style("font-family", "Urbanist, serif")
+          .style("font-size", 22);
+
 
         const y = d3.scaleLinear()
           .domain([0, d3.max(data, d => d.demand_mw)])
           .range([height, 0]);
 
         svg.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .selectAll("text")
+          .style("font-family", "Urbanist, serif")
+          .style("font-size", 22);
 
         svg.selectAll("rect")
           .data(data)
@@ -463,7 +528,41 @@ chartB.updateLegend = function() {
             .attr("y", d => y(d.demand_mw))
             .attr("width", x.bandwidth())
             .attr("height", d => height - y(d.demand_mw))
-            .attr("fill", "#1f77b4");
+            .attr("fill", "#1f77b4")
+             .style("cursor", "pointer") 
+            .on("pointerover", function () {
+              tooltip.style("visibility", "visible");
+            })
+            .on("pointermove", function (event, d) {
+              tooltip.html(`
+                <div class="tooltip-title">${d.year}</div>
+                <div class="tooltip-row"><span>Demand:</span> <strong>${d3.format(",")(d.demand_mw)} MW</strong></div>
+              `);
+
+              const containerBounds = container.node().getBoundingClientRect();
+              const tooltipNode = tooltip.node();
+              const tooltipWidth = tooltipNode.offsetWidth;
+              const tooltipHeight = tooltipNode.offsetHeight;
+
+              const [mouseX, mouseY] = d3.pointer(event, container.node());
+              const margin2 = 12;
+              const spaceRight = containerBounds.width - mouseX;
+
+              let left = spaceRight < tooltipWidth + margin2
+                ? mouseX - tooltipWidth - margin2
+                : mouseX + margin2;
+              left = Math.max(4, Math.min(left, containerBounds.width - tooltipWidth - 4));
+
+              let top = mouseY - tooltipHeight - margin2;
+              top = Math.max(4, Math.min(top, containerBounds.height - tooltipHeight - 4));
+
+              tooltip
+                .style("left", `${left}px`)
+                .style("top", `${top}px`);
+            })
+            .on("pointerout", function () {
+              tooltip.style("visibility", "hidden");
+            });
 
 
 
@@ -670,11 +769,11 @@ const chartD = {
   initScrollySteps: function () {
     // Falls back gracefully if .sectionD class isn't on outer div
     const stepElements = document.querySelectorAll(".sectionD .step-pause").length
-      ? document.querySelectorAll(".sectionD .step-pause")
+      ? document.querySelectorAll(".sectionD-outer .step-pause")
       : document.querySelectorAll(".scrolly-steps .step-pause");
 
     stepElements.forEach((wrapperEl) => {
-    const stepEl = wrapperEl.querySelector(".step");
+    const stepEl = wrapperEl.querySelector(".step-d");
     const stepNum = +stepEl.dataset.step;
 
     ScrollTrigger.create({
@@ -715,14 +814,26 @@ function lightenColor(hex, amount) {
 function drawChartE(dataE, fillScale) {
   d3.select("#chart-e").html("");
 
+  const isMobile = window.innerWidth < 768;
 
-  const margin = { top: 60, right: 140, bottom: 60, left: 70 };
-  const gap = 50;
-  const totalWidth = 1300;
-  const totalHeight = 600;
+  const margin = isMobile 
+    ? { top: 50, right: 20, bottom: 50, left: 60 }
+    : { top: 60, right: 140, bottom: 60, left: 70 };
+  const gap = isMobile ? 60 : 50;
 
-  const facetWidth = (totalWidth - margin.left - margin.right - gap) / 2;
-  const height = totalHeight - margin.top - margin.bottom;
+  const totalWidth = isMobile ? window.innerWidth - 20 : 1300;
+  const totalHeight = isMobile ? 900 : 600; // taller total since facets stack
+
+  // On mobile: facets stack vertically, so each facet gets full width, half height
+  const facetWidth = isMobile
+    ? totalWidth - margin.left - margin.right
+    : (totalWidth - margin.left - margin.right - gap) / 2;
+
+  const facetHeight = isMobile
+    ? (totalHeight - margin.top - margin.bottom - gap) / 2
+    : totalHeight - margin.top - margin.bottom;
+
+  const height = facetHeight; // used below in y-scale/axis
 
   const svg = d3.select("#chart-e")
     .append("svg")
@@ -752,27 +863,32 @@ function drawChartE(dataE, fillScale) {
     .domain([0, (maxCapacity || 0) * 1.1]).nice()
     .range([height, 0]);
 
-  const yAxisG = svg.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`)
-    .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
-  
-  yAxisG.select(".domain").remove();
+  // On mobile, draw one y-axis per facet (since they're stacked, not sharing one axis visually)
+  // On desktop, keep the single shared y-axis on the left
+  if (!isMobile) {
+    const yAxisG = svg.append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
+      .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
+    yAxisG.select(".domain").remove();
 
-  svg.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 20)
-    .attr("x", -(margin.top + height / 2))
-    .attr("text-anchor", "middle")
-    .style("font-size", "12px")
-    .style("font-family", "'Urbanist', sans-serif")
-    .style("font-weight", "600")
-    .text("Capacity (MW)");
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 20)
+      .attr("x", -(margin.top + height / 2))
+      .attr("text-anchor", "middle")
+      .style("font-size", "12px")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("font-weight", "600")
+      .text("Capacity (MW)");
+  }
 
   facets.forEach((facet, index) => {
-    const xOffset = margin.left + index * (facetWidth + gap);
+    // Desktop: offset horizontally. Mobile: offset vertically.
+    const xOffset = isMobile ? margin.left : margin.left + index * (facetWidth + gap);
+    const yOffset = isMobile ? margin.top + index * (facetHeight + gap) : margin.top;
 
     const chartG = svg.append("g")
-      .attr("transform", `translate(${xOffset}, ${margin.top})`);
+      .attr("transform", `translate(${xOffset}, ${yOffset})`);
 
     chartG.append("text")
       .attr("x", facetWidth / 2)
@@ -783,13 +899,19 @@ function drawChartE(dataE, fillScale) {
       .style("font-family", "'Urbanist', sans-serif")
       .text(facet.title);
 
+    // On mobile, add a y-axis to each stacked facet since they're not sharing one visual axis
+    if (isMobile) {
+      const facetYAxisG = chartG.append("g")
+        .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
+      facetYAxisG.select(".domain").remove();
+    }
+
     const facetData = dataE.filter(d => d.date_type === facet.key);
     const sortedData = [...facetData].sort((a, b) => {
       return fuelCategories.indexOf(a.fuel_category) - fuelCategories.indexOf(b.fuel_category);
     });
 
     const dataByDecade = d3.group(sortedData, d => d.decade);
-
 
     decades.forEach(dec => {
       const rows = dataByDecade.get(dec) || [];
@@ -801,7 +923,7 @@ function drawChartE(dataE, fillScale) {
           .attr("y", y(cumulative + seg.capacity_mw))
           .attr("width", x.bandwidth())
           .attr("height", Math.max(0, y(cumulative) - y(cumulative + seg.capacity_mw)))
-          .attr("fill", fillScale[seg.fuel_category]) 
+          .attr("fill", fillScale[seg.fuel_category])
           .attr("shape-rendering", "crispEdges");
 
         cumulative += seg.capacity_mw;
@@ -1091,5 +1213,29 @@ ScrollTrigger.create({
 window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
+
+const animation = lottie.loadAnimation({
+  container: document.getElementById('lottie-container'), 
+  renderer: 'svg',                                     
+  loop: true,                                      
+  autoplay: true,                                      
+  path: 'images/cycle-3.json'                        
+});
+
+const images = gsap.utils.toArray('.cycle-img');
+let index = 0;
+
+// set initial state: only first image visible
+gsap.set(images, { opacity: 0 });
+gsap.set(images[0], { opacity: 1 });
+
+function showNext() {
+  gsap.set(images[index], { opacity: 0 });
+  index = (index + 1) % images.length;
+  gsap.set(images[index], { opacity: 1 });
+}
+
+gsap.timeline({ repeat: -1 })
+  .call(showNext, [], "+=0.17");
 
 });

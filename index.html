@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;800&family=Yuyu&family=Noto+Sans:ital,wght@100;400;600;700&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;800&family=Noto+Sans:ital,wght@0,100;0,400;0,600;0,700&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
     <title>Cold Comfort: Data Centers, Climate Change, and the Cost of Staying Cool</title>
 </head>
@@ -103,7 +105,7 @@
    <p>Dominion Energy, the energy provider for Virginia, expects that data center coincident peak demand — the power that is demanded at a single moment — will quadruple over the next 20 years, from about 4GW in 2025 to 16.6 GW in 2046.</p>
    </div>
    <div class = "chart-c-wrapper"><div class = "chart-header"><h3>Dominion Energy Expects Data Center Power Demand To Quadruple By 2046</h3>
-      <h5>Forecasted coincident peak demand (in GW) for data centers in Dominion Energy's service territory </h5></div>
+      <h5>Forecasted coincident peak demand (in MW) for data centers in Dominion Energy's service territory </h5></div>
     
    <div class = "chart-container" alt = "bar chart showing data center power demand growing from 4GW to 16 GW from 2026 to 2046">
    <div id ="chartC"></div><div class = "caption-2"><p>Source: <a href = "https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/dominion-documentation.pdf">Dominion Energy Data Center Load Forecast Documentation (PJM Interconnection)</a></p></div> 
@@ -117,7 +119,7 @@
 <div class="sectionD-outer">
   <div class="sectionD-inner">
     <div class="scrolly-container-d">
-      <div class="sticky-graphic">
+      <div class="sticky-graphic-d">
         <div class="intro-step-d"><h2>PJM's demand prediction does not account for hotter summers</h2></div>
     <div class = "chart-d-wrapper"><div class="chart-header">
             <h3>Needed Energy Capacity Projected To Grow Significantly</h3>
@@ -129,32 +131,33 @@
     <p><a href="https://crt-climate-explorer.nemac.org/">U.S. Climate Explorer (NOAA / U.S. Global Change Research Program, Projected Annual Cooling Days [CDD], RCP 4.5 & RCP 8.5 scenarios for Washington, DC; Chicago, IL; Baltimore, MD; Philadelphia, PA; and Pittsburgh, PA)</a></p>
     <p><a href="https://dataminer2.pjm.com/feed/load_frcstd_hist/definition">PJM Historical Load Forecasts</a></p>
     <p><a href="https://pjm.my.site.com/publicknowledge/s/article/Load-Forecasting-Supplement-and-2026-PJM-Load-Forecast-Report?language=en_US">PJM Load Forecasting Supplement and 2026 PJM Load Forecast Report</a></p>
-    <p><a href="methodology.html" style="font-size: larger; font-weight: 700;">More about methodology</a></p>
+    <p><a href="methodology.html" style="font-size: 1.2rem; font-weight: 700;">More about methodology</a></p>
     </div>
     </div>
   </div>
 </div>
   <div class = "scrolly-steps">
     <div class="step-pause" style="margin-top: -200vh;">
-  <div class = "step" data-step="1"></div></div>
+  <div class = "step-d" data-step="1"></div></div>
   <div class="step-pause">
-<div class = "step" data-step = "2"><p>Between 2015 and 2023, when Chat GPT became the first widely-used LLM tool, demand for electricity in the PJM service area stayed relatively flat.</p></div>
+<div class = "step-d" data-step = "2"><p>Between 2015 and 2023, demand for electricity in the PJM service area stayed relatively flat.</p></div>
    </div>
     <div class="step-pause">
-<div class = "step" data-step = "3"><p>Since 2023, however, LLM tools and the data centers powering them have sent pwer companies and distributors scrambling to keep pace. PJM has estimated the demand growth over the next 20 years if all the planned data centers are built, and the numbers are stark.</p></div>
+<div class = "step-d" data-step = "3"><p>Then Chat GPT, the first large language model (LLM) was introduced. Since then, electric companies and distributors have been scrambling to keep pace. PJM has estimated the demand growth over the next 20 years if all the planned data centers are built, and the numbers are stark.</p></div>
   </div>
    <div class="step-pause">
-<div class = "step" data-step = "4"><p>Although PJM can currently meet capacity demand, which peaked in 2026 at roughly 160,000 megawatts, will it be able to meet 2033 demands of at least 200,000 megawatts?</p></div>
+<div class = "step-d" data-step = "4"><p>Although PJM can currently meet capacity demand, which peaked in 2026 at roughly 160,000 megawatts, will it be able to meet 2033 demands of at least 200,000 megawatts?</p></div>
    </div>
     <div class="step-pause">
-<div class = "step" data-step = "5"><p>More striking still is that PJM uses for its demand predictions weather from the past 30 years, rather than NOAA predictions about the next 30 years.</p></div>
+<div class = "step-d" data-step = "5"><p>More striking still is that PJM uses for its demand predictions weather from the past 30 years, rather than NOAA predictions about the next 30 years.</p></div>
    </div>
     <div class="step-pause">
-<div class = "step" data-step = "6"><p>If we instead use NOAA forecasts to plot what summers might look like under two likely climate change scenarios, known as RCP 4.5 and RCP 8.5, we see the picture is very different.</p></div>
+<div class = "step-d" data-step = "6"><p>If we instead use NOAA forecasts to plot what summers might look like under two likely climate change scenarios, known as RCP 4.5 and RCP 8.5, we see the picture is very different.</p></div>
    </div>
     <div class="step-pause">
-<div class = "step" data-step = "6"><p>PJM describes their weather assumptions as follows, in their own internal document:</p>
-    </div></div>
+<div class = "step-d" data-step = "6"><p>PJM describes their weather assumptions as follows, in their own internal document:</p>
+</div>
+  </div>
   <div class="step-spacer"></div>
     </div>
   </div>
@@ -189,8 +192,7 @@
   <div class = "static-section-inner">
   <h2>So We Need More Power Plants?</h2>
    <p>Although it might seem like the obvious solution, building more power plants is far from a panacea. Plants built which use fossil fuels risk sending us further into a viscious circle where we burn fossil fuels to keep cool, warming the planet and forcing us to burn more fossil fuels to keep cool...</p>
- <img src = "images/cycle.svg", alt = "image showing the cycle of more heat leading to more air conditioning leading to more greenhouse gases leading to more heat" class = "responsive-img">
- 
+ <div id="lottie-container"></div>
 </div>
   </div>
 <!-- page G -->
@@ -223,7 +225,12 @@
    <li>Fight against data centers in your backyard - check out <a href = "http://brockovichdatacenter.com">http://brockovichdatacenter.com</a> to find out if a data center is being built near you and to find out about community actions against it</li>
    <li>Demand that any new power plants in your community run on renewable resources like hydro, solar, and wind power so that the power grid can adapt to growing demand without producing more greenhouse gases</li>
 </ul>
-<img src = "images/protest-stock.svg", alt = "protesters with signs protesting AI data centers and fossil fuel plants" style="max-width:550px; margin:0 auto;">
+<div class="img-cycle">
+  <img src="images/protest 2_00000.png" class="cycle-img active", alt = "protesters with signs protesting AI data centers and fossil fuel plants">
+  <img src="images/protest 2_00001.png" class="cycle-img">
+  <img src="images/protest 2_00002.png" class="cycle-img">
+  <img src="images/protest 2_00003.png" class="cycle-img">
+</div>
 </div>
 </div>
 </main>
