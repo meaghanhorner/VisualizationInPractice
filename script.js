@@ -1,5 +1,14 @@
 gsap.registerPlugin(ScrollTrigger)
 
+
+ScrollTrigger.normalizeScroll(true);
+
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
+});
+
 const fadeDuration = 0.01;
 const displayTime = 0.12; 
 
@@ -104,18 +113,26 @@ ScrollTrigger.matchMedia({
     });
   },
 
-  "(max-width: 767px)": function() {
-function syncStickyGraphicHeight() {
-  const steps = document.querySelector('.sectionD-inner .scrolly-steps');
-  const sticky = document.querySelector('.sectionD-inner .sticky-graphic-d');
-  if (steps && sticky) {
-    sticky.style.height = steps.scrollHeight + 'px';
-    ScrollTrigger.refresh();
+"(max-width: 767px)": function() {
+  function syncStickyGraphicHeight() {
+    const steps = document.querySelector('.sectionD-inner .scrolly-steps');
+    const sticky = document.querySelector('.sectionD-inner .sticky-graphic-d');
+    if (steps && sticky) {
+      sticky.style.height = steps.scrollHeight + 'px';
+      ScrollTrigger.refresh();
+    }
   }
+  syncStickyGraphicHeight();
+  window.addEventListener('resize', syncStickyGraphicHeight);
+
+  return () => {
+    const sticky = document.querySelector('.sectionD-inner .sticky-graphic-d');
+    if (sticky) {
+      sticky.style.height = ''; // remove inline height
+    }
+    window.removeEventListener('resize', syncStickyGraphicHeight);
+  };
 }
-syncStickyGraphicHeight();
-window.addEventListener('resize', syncStickyGraphicHeight);
-  }
 
 });
 
@@ -535,9 +552,9 @@ chartB.updateLegend = function() {
             })
             .on("pointermove", function (event, d) {
               tooltip.html(`
-                <div class="tooltip-title">${d.year}</div>
-                <div class="tooltip-row"><span>Demand:</span> <strong>${d3.format(",")(d.demand_mw)} MW</strong></div>
-              `);
+  <div class="tooltip-row"><span>Year:</span> <strong>${d.year}</strong></div>
+  <div class="tooltip-row"><span>Demand:</span> <strong>${d3.format(",")(d.demand_mw)} MW</strong></div>
+`);
 
               const containerBounds = container.node().getBoundingClientRect();
               const tooltipNode = tooltip.node();
@@ -781,11 +798,13 @@ const chartD = {
       trigger: wrapperEl,
       start: "top center",
       end: "bottom center",
+      markers: false,
       onEnter: () => this.setStage(stepNum),
       onEnterBack: () => this.setStage(stepNum)
       });
     });
 
+    this.setStage(1);
     ScrollTrigger.refresh();
   }
 };
@@ -817,12 +836,12 @@ function drawChartE(dataE, fillScale) {
   const isMobile = window.innerWidth < 768;
 
   const margin = isMobile 
-    ? { top: 50, right: 20, bottom: 50, left: 95 }
+    ? { top: 50, right: 20, bottom: 50, left: 65 }
     : { top: 60, right: 140, bottom: 60, left: 105 };
-  const gap = isMobile ? 60 : 50;
+  const gap = isMobile ? 120 : 50;
 
   const totalWidth = isMobile ? window.innerWidth - 20 : 1300;
-  const totalHeight = isMobile ? 900 : 600; // taller total since facets stack
+  const totalHeight = isMobile ? 1000 : 600; // taller total since facets stack
 
   // On mobile: facets stack vertically, so each facet gets full width, half height
   const facetWidth = isMobile
@@ -834,6 +853,14 @@ function drawChartE(dataE, fillScale) {
     : totalHeight - margin.top - margin.bottom;
 
   const height = facetHeight; // used below in y-scale/axis
+
+  let tooltip = d3.select(".chartE-tooltip");
+  if (tooltip.empty()) {
+    tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "chartE-tooltip")
+      .style("opacity", 0);
+  }
 
   const svg = d3.select("#chart-e")
     .append("svg")
@@ -886,7 +913,6 @@ function drawChartE(dataE, fillScale) {
   }
 
   facets.forEach((facet, index) => {
-    // Desktop: offset horizontally. Mobile: offset vertically.
     const xOffset = isMobile ? margin.left : margin.left + index * (facetWidth + gap);
     const yOffset = isMobile ? margin.top + index * (facetHeight + gap) : margin.top;
 
@@ -897,7 +923,7 @@ function drawChartE(dataE, fillScale) {
       .attr("x", facetWidth / 2)
       .attr("y", -20)
       .attr("text-anchor", "middle")
-      .style("font-size", "18px")
+      .style("font-size", isMobile ? "13px" : "18px")
       .style("font-weight", "bold")
       .style("font-family", "'Urbanist', sans-serif")
       .text(facet.title);
@@ -907,8 +933,18 @@ function drawChartE(dataE, fillScale) {
         .call(d3.axisLeft(y).tickFormat(d => `${d / 1000}k MW`));
       facetYAxisG.select(".domain").remove();
        facetYAxisG.selectAll("text")                     
-        .style("font-size", "14px")                        
-        .style("font-family", "'Urbanist', sans-serif");   
+        .style("font-size", "11px")                        
+        .style("font-family", "'Urbanist', sans-serif");
+        
+         chartG.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -facetHeight / 2)
+    .attr("y", -margin.left + 12) // pull it in close to the left edge
+    .attr("text-anchor", "middle")
+    .style("font-size", "10px")
+    .style("font-weight", "600")
+    .style("font-family", "'Urbanist', sans-serif")
+    .text("Capacity (MW)");
     }
 
     const facetData = dataE.filter(d => d.date_type === facet.key);
@@ -920,18 +956,51 @@ function drawChartE(dataE, fillScale) {
 
     decades.forEach(dec => {
       const rows = dataByDecade.get(dec) || [];
+
+ const grouped = d3.rollup(
+    rows,
+    v => ({
+      total: d3.sum(v, d => d.capacity_mw),
+      count: v.length
+    }),
+    d => d.fuel_category
+  );
+
+  const groupedArray = fuelCategories
+    .filter(fuel => grouped.has(fuel))
+    .map(fuel => ({ fuel_category: fuel, ...grouped.get(fuel) }));
+
+
       let cumulative = 0;
 
-      rows.forEach(seg => {
-        chartG.append("rect")
-          .attr("x", x(dec))
-          .attr("y", y(cumulative + seg.capacity_mw))
-          .attr("width", x.bandwidth())
-          .attr("height", Math.max(0, y(cumulative) - y(cumulative + seg.capacity_mw)))
-          .attr("fill", fillScale[seg.fuel_category])
-          .attr("shape-rendering", "crispEdges");
+       groupedArray.forEach(seg => {
+    const rect = chartG.append("rect")
+      .attr("x", x(dec))
+      .attr("y", y(cumulative + seg.total))
+      .attr("width", x.bandwidth())
+      .attr("height", Math.max(0, y(cumulative) - y(cumulative + seg.total)))
+      .attr("fill", fillScale[seg.fuel_category])
+      .attr("shape-rendering", "crispEdges");
 
-        cumulative += seg.capacity_mw;
+    if (!isMobile) {
+      rect
+        .on("mouseover", function (event) {
+          tooltip.transition().duration(150).style("opacity", 1);
+          tooltip.html(
+            `<strong>${seg.fuel_category}</strong><br>${dec}<br>${seg.total.toLocaleString()} MW total<br>${seg.count} plant${seg.count !== 1 ? "s" : ""}`
+          );
+        })
+        .on("mousemove", function (event) {
+          tooltip
+            .style("left", (event.pageX + 12) + "px")
+            .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function () {
+          tooltip.transition().duration(150).style("opacity", 0);
+        });
+    }
+
+    cumulative += seg.total;
       });
     });
 
@@ -940,7 +1009,7 @@ function drawChartE(dataE, fillScale) {
       .call(d3.axisBottom(x).tickFormat(d => d + "s"))
       .call(g => g.select(".domain").remove())
       .call(g => g.selectAll("text")                        
-        .style("font-size", "16px")                          
+        .style("font-size",isMobile ? "10px" : "16px")                          
         .style("font-family", "'Urbanist', sans-serif"));    
 
     chartG.append("text")
@@ -997,6 +1066,8 @@ function drawChartE(dataE, fillScale) {
   "District Of Columbia":        { row: 2, col: 3 }
 };
 
+const mobile_breakpoint = 768;
+
 Promise.all([
   d3.json("june_prices.json"),
   d3.json("state_summary_prices.json")
@@ -1004,19 +1075,49 @@ Promise.all([
   const summaryByState = new Map(summaryObj.data.map(d => [d.state, d]));
 
   const dataG = seriesObj.data
-  .filter(d => statesToShow.includes(d.state))
-  .map(d => ({ ...d, summary: summaryByState.get(d.state), pos: statePositions[d.state] }));
-  console.log(dataG.map(d => ({ state: d.state, hasSeries: !!d.series, hasPos: !!d.pos })));
+    .filter(d => statesToShow.includes(d.state))
+    .map(d => ({ ...d, summary: summaryByState.get(d.state), pos: statePositions[d.state] }));
 
-  drawChartG(dataG);
+  render(dataG);
 });
 
+let currentData = null;
 
+function render(dataG) {
+  currentData = dataG;
+  if (window.innerWidth < mobile_breakpoint) {
+    drawCarousel(dataG);
+  } else {
+    drawChartG(dataG);
+  }
+}
 
-function drawChartG(dataG){
-  const margin = {top: 20, right: 150, bottom: 100, left:20 };
-  const width = 890 - margin.left - margin.right;
-  const height = 500 - margin.top - margin.bottom;
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (currentData) render(currentData);
+  }, 200);
+});
+
+function drawChartG(dataG) {
+  d3.select("#chart-g").html("");
+
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const width = 690 - margin.left - margin.right;
+  const height = 690 - margin.top - margin.bottom;
+
+  const totalWidth = width + margin.left + margin.right;
+  const totalHeight = height + margin.top + margin.bottom;
+
+  const svg = d3.select("#chart-g")
+    .append("svg")
+    .attr("viewBox", `0 0 ${totalWidth} ${totalHeight}`)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .style("width", "100%")
+    .style("height", "auto")
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
   const columns = 4;
   const rows = 4;
@@ -1024,14 +1125,7 @@ function drawChartG(dataG){
   const facetHeight = height / rows;
   const allValues = dataG.flatMap(d =>d.series);
 
-
-  const svg = d3.select("#chart-g")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
-
+    
   const facetMargin = { top: 25, right: 20, bottom: 25, left: 20 };
 
  const x = d3.scaleLinear()
@@ -1103,17 +1197,17 @@ const colorScale = d3.scaleLinear()
 
   facet.append("text")
     .attr("x", d => x(d.series[0].year))
-    .attr("y", d =>y(d.summary.start_value)-12)
-    .attr("text-anchor", "start")
+  .attr("y", facetMargin.top + 40) 
+  .attr("text-anchor", "start")
     .style("font-size", "11px")
     .style("font-family", "'Urbanist', sans-serif")
     .style("fill", "#540505")
     .text(d =>  `${d.summary.start_value}¢`); 
 
   facet.append("text")
-    .attr("x", d => x(d.series[d.series.length - 1].year))
-    .attr("y", d => y(d.summary.end_value) - 12)
-    .attr("text-anchor", "end")
+     .attr("x", d => x(d.series[d.series.length - 1].year)-5)
+  .attr("y", facetMargin.top + 20)
+  .attr("text-anchor", "end")
     .style("font-size", "11px")
     .style("font-family", "'Urbanist', sans-serif")
     .style ("fill", "#540505")
@@ -1133,6 +1227,129 @@ const colorScale = d3.scaleLinear()
 
 
 }
+
+function drawCarousel(dataG) {
+  const root = d3.select("#chart-g");
+  root.html("");
+
+  const scroller = root.append("div")
+    .attr("class", "carousel-scroller")
+    .style("display", "flex")
+    .style("overflow-x", "auto")
+    .style("scroll-snap-type", "x mandatory")
+    .style("gap", "12px")
+    .style("padding", "4px 4px 12px 4px")
+    .style("-webkit-overflow-scrolling", "touch");
+
+  const cardWidth = 280;
+  const cardHeight = 280;
+  const margin = { top: 25, right: 20, bottom: 25, left: 20 };
+
+  const colorScale = d3.scaleLinear()
+    .domain([0, d3.max(dataG, d => d.summary.pct_increase)])
+    .range(["#ffffff", "#ff9e9e"])
+    .clamp(true);
+
+  const cards = scroller.selectAll(".card")
+    .data(dataG)
+    .join("div")
+    .attr("class", "card")
+    .style("flex", "0 0 85%")
+    .style("max-width", "340px")
+    .style("scroll-snap-align", "center");
+
+  cards.each(function(d) {
+    const svg = d3.select(this)
+      .append("svg")
+      .attr("viewBox", `0 0 ${cardWidth} ${cardHeight}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .style("width", "100%")
+      .style("height", "auto")
+      .style("display", "block");
+
+    const g = svg.append("g");
+
+    const x = d3.scaleLinear()
+      .domain(d3.extent(d.series, s => s.year))
+      .range([margin.left, cardWidth - margin.right]);
+
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(d.series, s => s.price)])
+      .nice()
+      .range([cardHeight - margin.bottom, margin.top]);
+
+    const line = d3.line()
+      .x(s => x(s.year))
+      .y(s => y(s.price));
+
+    g.append("rect")
+      .attr("width", cardWidth)
+      .attr("height", cardHeight)
+      .attr("rx", 12)
+      .attr("ry", 12)
+      .attr("fill", colorScale(d.summary.pct_increase));
+
+    g.append("path")
+      .datum(d.series)
+      .attr("fill", "none")
+      .attr("stroke", "#880000")
+      .attr("stroke-width", 2.5)
+      .attr("d", line);
+
+    g.append("text")
+      .attr("x", 20)
+      .attr("y", 28)
+      .style("font-size", "16px")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("font-weight", "600")
+      .text(d.state);
+
+    const yearExtent = d3.extent(d.series, s => s.year);
+    const axisG = g.append("g")
+      .attr("transform", `translate(0, ${cardHeight - margin.bottom})`)
+      .call(
+        d3.axisBottom(x)
+          .tickValues(yearExtent)
+          .tickFormat(d3.format("d"))
+          .tickSize(0)
+      )
+      .call(ax => ax.select(".domain").remove());
+    axisG.selectAll(".tick text")
+      .style("text-anchor", (dd, i) => i === 0 ? "start" : "end")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("font-size", "12px");
+
+    g.append("text")
+      .attr("x", x(d.series[0].year))
+      .attr("y", y(d.summary.start_value) - 14)
+      .attr("text-anchor", "start")
+      .style("font-size", "13px")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("fill", "#540505")
+      .text(`${d.summary.start_value}¢`);
+
+    g.append("text")
+      .attr("x", x(d.series[d.series.length - 1].year))
+      .attr("y", y(d.summary.end_value) - 14)
+      .attr("text-anchor", "end")
+      .style("font-size", "13px")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("fill", "#540505")
+      .text(`${d.summary.end_value}¢`);
+
+    g.append("text")
+      .attr("x", cardWidth - margin.right)
+      .attr("y", cardHeight - 34)
+      .attr("text-anchor", "end")
+      .style("font-size", "20px")
+      .style("font-family", "'Urbanist', sans-serif")
+      .style("font-weight", "bold")
+      .style("fill", d.summary.pct_increase > 0 ? "#810000" : "steelblue")
+      .text(`+${d.summary.pct_increase}%`);
+  });
+}
+
+
 
 chartB.initScrollySteps = function () {
   document.querySelectorAll(".sectionB .step").forEach((stepEl) => {

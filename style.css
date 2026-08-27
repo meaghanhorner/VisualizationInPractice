@@ -1,5 +1,8 @@
+
+
 html {
   margin:0;
+  max-width: 100%;
 }
 
 body {
@@ -8,9 +11,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding:0;
   overflow:visible;
+  max-width:100%;
 }
 
 main {
@@ -38,7 +42,7 @@ div{
 .scrolly-steps {
   position:relative;
   grid-area: 1 / 1;
-  z-index: 1;
+  z-index: 4;
   pointer-events: none;
   width: 100%;
   justify-self: stretch;
@@ -150,13 +154,17 @@ li {
   grid-area: 1 / 1;
   position: sticky;
   top: 0;
-  width:100%;
-  min-height:90vh;
-  max-height:100vh;
+  width: 100%;
+  min-height: 90vh;
+  max-height: 100vh;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.sticky-graphic > * {
+  min-height: 0; 
 }
 
 .sticky-graphic-right {
@@ -200,7 +208,7 @@ article {
 }
 
 .step {
-  min-height: 50vh;
+  height: clamp(280px, 50vh, 800px);
   display: flex;
   width:100%;
   flex-direction: column;
@@ -210,35 +218,61 @@ article {
 
 
 
+
+
+
+
 .step-pause {
   min-height: 120vh; 
   display: flex;
   align-items: center;
   justify-content: center;
   z-index:11;
-  width: 40vw;
-  min-width:600px;
+  width: 100%;
+  max-width: 800px;
   max-height: 130vh;
+  margin-left: auto;
+  margin-right: 5%;
+  box-sizing:border-box;
 }
+
+.step-pause.line-mid {
+  padding-top: 50%;
+}
+
 
 .step-pause .step-d {
   position: sticky;
-  top: 45vh;             
+  top: 65vh;             
   transform: translateY(-50%);
 }
 
+.step-d.line-mid {
+  top: clamp(380px, 32vw, 700px); 
+}
+
+.step-d.line-high {
+  top: clamp(180px, 21vw, 500px); 
+}
+
 .sticky-graphic-d {
-  grid-area: 1 / 1;
   position: sticky;
   top: 0;
-  width: 100%;
-  min-height: 90vh;
+  height: 100vh;
   max-height: 100vh;
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  box-sizing:border-box;
+  padding: clamp(0.5rem, 2vh, 2rem);
+  gap: clamp(0.5rem, 1.5vh, 1.5rem);
 }
+
+
+.sticky-graphic-d > * {
+  flex: 0 1 auto;  
+  min-height: 0;
+}
+
 
 .step-d {
   min-height: 50vh;
@@ -251,8 +285,8 @@ article {
 }
 
 .step-d p, .step-d h2 {
-  width: 50%;
-  max-width: 450px;
+  width: 60%;
+  max-width: 500px;
   margin-left: auto;
   margin-right: 0%;
   text-align: left;
@@ -355,11 +389,13 @@ article {
   align-items: flex-start; 
   position: relative;
   z-index: 3;
+  flex: 1 1 auto;
 }
 
+
 .chart-c-wrapper {
-  width: 90%;
-  max-width: 920px;
+  width: 100%;
+  max-width: 1160px;
   margin: 0;   
   padding-top:0;
   padding-bottom:0;           
@@ -372,25 +408,54 @@ article {
 }
 
 .chart-d-wrapper {
-  position:sticky;
-  width: 100%;
-  max-width: 1440px;
-  max-height:70vh;
-  margin: 0;   
-  padding-top:10px;
-  padding-bottom:0;           
-  text-align: left;    
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; 
+}
+
+.chart-d-container {
+  flex: 1 1 auto;
+  min-height: 0;
   position: relative;
-  z-index: 3;
+}
+
+
+.chart-g-wrapper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: flex;
+  flex-direction: column;
+}
+
+
+.chart-g-container {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#chart-g {
+  width: 100%;
+  display: block;
+}
+
+#chart-g svg {
+  width: 100%;
+  height: auto;
+  min-width: 100px;
+  max-width: 100%;
+  display: block;
 }
 
 .chart-header {
-  margin-bottom:0;
-  text-align: left;       /* Forces titles/subtitles to align left */
+  margin-bottom: 0;
+  text-align: left;      
   width: 100%;
+  flex: 0 0 auto;
 }
 
 .chart-header h3 {
@@ -432,6 +497,7 @@ article {
   position: relative;
   overflow-x: visible;
   overflow-y: hidden;
+  flex: 1 1 auto;
 }
 
 #chart-b-container svg {
@@ -441,6 +507,22 @@ article {
 }
 
 .chartB-tooltip {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 0.85rem;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.1s ease-out;
+  overflow:visible;
+}
+
+
+.chartE-tooltip {
+  position: absolute;
+  pointer-events: none;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -510,16 +592,13 @@ article {
 
 }
 
-/* #chart-d-container {
-  flex: 1; 
-  width: 65%;
-  height: auto;
-  min-height: 0; 
-  margin: 5px 0 5px auto;
-  justify-content:center;
-  display: flex;
-  flex-direction: column;
-} */
+.chart-d-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  display: flex;             
+  flex-direction: column;     
+}
 
 .section{
   width: 100%;
@@ -539,14 +618,55 @@ article {
 }
 
 .section-inner {
-  max-height:90vh;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.2fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+  width: 100%;
+  height: 100%;         /* fills the sticky box, no overflow, no scroll */
+  min-height: 0;
+  max-width: 100%;
+  justify-content: center;
 }
 
-.sectionleft{
+
+
+
+.section-inner h2,
+.section-inner > p {
+  grid-column: 1;         
+}
+
+.section-inner .chart-c-wrapper {
+  grid-column: 2;         
+  grid-row: 1 / -1;       
+  align-self: stretch;
+}
+
+.text-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.1rem, 0.8vh, 1rem);   /* CHANGE: tighter gap between elements */
+  height: 100%;
+  min-height: 0;
+  justify-content: flex-start;
+}
+
+.text-col h2 {
+  font-size: clamp(1.9rem, 3vh, 2.4rem);
+  margin: 0 0 0.2em;   
+}
+
+.text-col p {
+  font-size: clamp(1.0rem, 1.7vh, 1.2rem);   
+  line-height: 1.3;                        
+  margin: 10;                                 
+}
+
+.sectionleft {
   width: 100%;
   position: relative;
   margin: 0;               
-  padding: 20px;
   box-sizing: border-box;      
   display: grid;
   grid-template-columns: 1fr;
@@ -559,7 +679,7 @@ article {
 .section-outer {
   position: relative;
   width:100%;
-  min-height:110vh;
+  min-height:100vh;
   display: flex;
   justify-content: center;
   padding:20px 0 20px;
@@ -571,6 +691,7 @@ article {
 .sectionD-outer {
   position: relative;
     width: 100%;
+    min-height:100vh;
     display: flex;
     justify-content: center;
     padding: 20px 0 20px;
@@ -583,7 +704,12 @@ article {
   width: 100%;
   max-width: 1160px;
   margin:0 auto;
+  padding:0 20px 0 20px;
 }
+
+
+
+
 
 .section-outer2 {
   scroll-snap-align: start;
@@ -604,21 +730,31 @@ article {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding:40px 0 60px;
   background-color:#d5dae6;
   clear:both;
 }
 
 .static-section-outer2 {
   position: relative;
-  width:100%;
-  height:180vh;
-  min-height:100vh;
+  width: 100%;
+  height: 180vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction:column;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding:40px 0 60px;
+  background-color: #E1E3E8;
+  clear: both;
+}
+
+.static-section-outer3 {
+  scroll-snap-align: start;
+  position:relative;
+  width:100%;
+  min-height:110vh;
+  display: flex;
+  justify-content: center;
+  padding:40px 0 40px;
   background-color:#E1E3E8;
   clear:both;
 }
@@ -630,7 +766,6 @@ article {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding:40px 0 60px;
   background-color:#ffffff;
   clear:both;
 }
@@ -638,14 +773,32 @@ article {
 
 .static-section-inner {
   position: sticky;
-  display: flex;
-  flex-direction:column;
-  justify-content:center;
-  top: 50vh;
-  transform: translateY(-50%);
-  min-height: 80vh;
-  width: 100%;
+  top: 1vh;
+  padding:10px 20px 10px;
+  height: auto;
   max-width: 1160px;
+  box-sizing: border-box;
+  display: flex;             
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(0.5rem, 1.5vh, 1.5rem); 
+  clear:both;
+}
+
+.static-section-inner > h2,
+.static-section-inner > p {
+  flex: 0 0 auto;              
+  margin: 0;
+}
+
+.static-section-inner h2 {
+  font-size: clamp(1.8rem, 3vh, 2.4rem);   /* ADD: scale instead of fixed 2.4rem */
+}
+
+.static-section-inner > p {
+  font-size: clamp(1.0rem, 1.8vh, 1.2rem); /* ADD: scale instead of fixed 1.2rem */
+  line-height: 1.35;
 }
 
 .sectionB{
@@ -658,10 +811,10 @@ article {
   padding:20px;
   display:grid;
   grid-template-columns:1fr;
-  min-height:100vh;
   grid-template-rows:auto;
   gap:16px;
 }
+
 
 .intro-step {
   min-height: unset !important;
@@ -675,16 +828,29 @@ article {
   text-align: left;
 }
 
+.intro-step h2 { font-size: clamp(1.4rem, 4vh, 2.25rem); margin: 0 0 0.3em; }
+.intro-step p { font-size: clamp(1rem, 2.4vh, 1.25rem); margin: 0; }
+
+.chart-header h3 { font-size: clamp(1.1rem, 2.8vh, 1.5rem); margin: 0 0 0.2em; }
+.chart-header h5,
+.chart-header h6 { font-size: clamp(0.85rem, 1.8vh, 1rem); margin: 0 0 0.2em; }
+
+
 .intro-step-d {
-  min-height: unset !important;
+  min-height: 3rem;
   height: auto !important;
   margin: 0px;
+
   display: block;
   max-width: 1440px;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
   z-index: 3;
   text-align: left;
+  flex: 0 0 auto; 
+}
+
+.intro-step-d h2 {
+  font-size: clamp(1.9rem, 2.2vh, 2rem);
+  margin: 0;
 }
 
 .intro-step-left {
@@ -716,19 +882,23 @@ svg {
 }
 
 #chartD {
+  flex: 1 1 auto;
+  min-height: 0;     
   width: 100%;
-  max-width: 925px; 
-  margin: 0 ;
-  overflow: visible;
-  height:auto;
-  display:block;
-  align-self:flex-start;
+}
+
+#chartD svg {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100%;
+  display: block;
 }
 
 #chart-e {
   width: 100%;
   min-width:180px;
-
+  height: auto;
+  min-height: 0;
   display:block;
   align-self:flex-start;
   overflow:visible;
@@ -859,6 +1029,7 @@ svg {
   box-sizing: border-box;
   padding: 0 2rem;
   margin: 0 auto;
+  align-self: stretch;
 }
 
 #intro h2 {
@@ -877,7 +1048,7 @@ svg {
 
 
 .textmain {
-  width: 60%;
+  width: 100%;
   max-width: 920px;
   padding:0px;
   margin:0 ! important;
@@ -886,18 +1057,13 @@ svg {
 
 
 .caption {
-  display: block;
-  width: 100%;                  
-  margin-left: 0;               
-  margin-right: auto;
-  margin-top: 5px;
-  margin-bottom: 5px;             
-  text-align: left;
-  height: auto;                 
-  background-color:#d5dae6;
-  overflow:hidden;
-  z-index: 2;
+  flex: 0 0 auto;   
+  font-size: clamp(0.55rem, 1vh, 0.75rem);
+  line-height: 1.3;
+  overflow-y: auto;  
+  max-height: 25vh;  
 }
+
 
 .caption-tall {
   display: block;
@@ -930,7 +1096,7 @@ svg {
 }
 
 .caption p {
-  padding:0 200px 0 0;
+  padding:0;
   margin:0px;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size:.8rem;
@@ -1066,13 +1232,13 @@ background-repeat: no-repeat;
     min-height:10vh;
   }
 
+
+
    .sectionB {
-    height: auto;
-    min-height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr;
     position: relative;
-    overflow: visible;
-    margin: 0 auto;
-    padding: 0px;
+    padding: 0;
   }
 
     .sectionD-outer {
@@ -1080,17 +1246,24 @@ background-repeat: no-repeat;
     overflow: visible;
     display: block;
     padding: 0px;
-    margin: 0px;
+    margin: 0 auto;
   }
 
  .sectionD-inner {
     height: auto;
     min-height: 100vh;
+    max-width: 100%;
     position: relative;
     overflow: visible;
     margin: 0 auto;
-    padding: 0px;
+    box-sizing: border-box;
+    padding: 0;
   }
+
+
+
+
+
 
   .scrolly-container {
     position: relative;
@@ -1121,84 +1294,115 @@ background-repeat: no-repeat;
     padding: 2vh;
     z-index: 3;
     text-align: left;
+    background:#d5dae6;
   }
 
+  #intro {
+  position: relative;
+  z-index: 5;
+  background-color: #ffffff; /* Blocks sticky elements underneath */
+  padding-bottom: 2rem;
+}
 
 
   .sticky-graphic {
     grid-area: 1 / 1;
-    align-self: start;
+    width: 100%;
     position: relative;
-    height: 140vh;
+    height: 100%;
+    max-height: none;
     z-index: 10;
     pointer-events: none;
   }
 
-  .sticky-graphic-d {
-    grid-area: 1 / 1;
-    align-self: start;
+    .sticky-graphic-d {
     position: relative;
-    height: 280vh;
-    max-height:280vh;
-    z-index: 10;
+    height: 100%;
+    max-height: none;
+    z-index: 2;
     pointer-events: none;
+    padding: 0;
+    gap: 0;
+  }
+
+.sticky-graphic-d,
+  .scrolly-steps {
+    grid-area: 1 / 1;
+    width: 100%;
   }
 
   .intro-step {
-   height: 20vh;
-   min-height: 20vh;
+   height: auto;
+   min-height: 0;
    overflow:hidden;
     position: relative;
     pointer-events: auto;
     margin: 0px;
     display: block;
-    padding: 2vh;
+    padding: 10px;
     z-index: 3;
     text-align: left;
   }
 
   .chart-b-wrapper {
     position: sticky;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     width: 100%;
     top: 0;
     z-index: 10;
     background: #d5dae6;
-    height: 45vh;
+    height: 50vh;
+    max-height: 50vh;
     overflow: hidden;
     pointer-events: auto;
+    display: flex;
+    flex-direction:column;
   }
 
    .chart-d-wrapper {
     position: sticky;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
     top: 0;
-    z-index: 10;
-    background: #d5dae6;
-    height: 35vh;
-    overflow: hidden;
-    pointer-events: auto;
-    align-items:stretch;
-  }
-
-#chartD {
+    height: 50vh;
+    max-height: 50vh;
     width: 100%;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index: 10;
+    background-color: #d5dae6; /* Match your section background */
+    padding: 10px;
+    pointer-events: auto;
   }
 
+.chart-d-wrapper .chart-header,
+  .chart-d-wrapper .caption {
+    flex: 0 0 auto;
+    height: auto;
+  }
+
+.chart-d-container {
+    flex: 1 1 auto;
+    min-height: 0; /* Lets flex container shrink below intrinsic SVG size */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+#chartD,
   #chartD svg {
-    width: 100% !important;
-    height: auto !important;
-    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .chart-header {
-    flex-shrink: 0; 
+    flex: 0 0 auto;
+    height: auto;
   }
   .chart-header h3 {
     font-size: 0.95rem;
@@ -1211,22 +1415,26 @@ background-repeat: no-repeat;
   #chart-b-container {
     flex: 1 1 auto; 
     min-height: 0; 
-    max-height: none;
-    overflow: visible;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #chart-b-container svg {
-    width: 100%;
-  height: 100%;
-  display: block;
+    width: 150%;
+  height: 150%;
+  margin: 0 0 0 -100px;
+  max-width: 150%;
+  max-height: 150%;
+  object-fit: contain;
   }
 
 
   .caption-tall {
-    margin-top:-60px;
-    height: 20px;
-    width: 230px;
-    font-size: 0.8rem;
+    flex: 0 0 auto;
+    height: auto;
   }
 
   .caption {
@@ -1236,7 +1444,7 @@ background-repeat: no-repeat;
   }
 
   .caption-2 {
-    padding: 0;
+    padding: 10px;
      overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -1254,13 +1462,15 @@ background-repeat: no-repeat;
 }
 
   .scrolly-steps {
-    padding-top: 70vh;
+    padding-top: 80vh;
     grid-area: 1 / 1;
     position: relative;
+    width: 100%;
     z-index: 1;
     background: transparent;
     pointer-events: auto;
     justify-self:auto;
+    background: #ffffff;
   }
 
   .step {
@@ -1281,11 +1491,6 @@ background-repeat: no-repeat;
     min-height: 0px;
   }
 
-  .step:last-child {
-  margin-bottom: 0vh;
-}
-
-
   .step-pause {
     box-sizing: border-box;
     padding: 1.5rem;
@@ -1294,8 +1499,8 @@ background-repeat: no-repeat;
     max-width: 100%;
     min-width: 300px;
     margin-top: 0 !important; /* overrides the -200vh inline style on step 1 */
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
     background-color: #ffffff;
   }
 
@@ -1320,7 +1525,6 @@ background-repeat: no-repeat;
   margin-right: auto;
 }
 
-
 .custom-quote {
   font-style: italic;
   font-size: 2rem;
@@ -1337,18 +1541,30 @@ background-repeat: no-repeat;
 }
 
 .drawing {
-    position: absolute;
-    margin-left: -60px;
-    margin-top: -50px;
-    top: 0;
-    left: 0;
-    width: 135%;
-    height: 135%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawing.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawing .slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+
+}
 
 .textmain {
   width: 100%;
@@ -1357,18 +1573,35 @@ background-repeat: no-repeat;
 .static-section-outer2 {
   padding-top:1vh;
   height: auto;
+  min-height: 100dvh;
 }
+
+.static-section-outer3 {
+  padding-top:1vh;
+  height: auto;
+  min-height: 100dvh;
+  max-height: none;
+  overflow:visible;
+  width: 100%;
+  margin: 0 auto;
+}
+
 
 .static-section-inner {
   padding-top:1vh;
   height: auto;
   min-height: 0vh;
+  max-height: none;
+  padding: 10px;
+  max-width: 100%;
 }
+
 
 .chart-c-wrapper { 
     width: 100%;
     display: flex;
     min-height: 0; 
+    height: auto;
     max-height: none;
     overflow: visible;
   }
@@ -1376,6 +1609,7 @@ background-repeat: no-repeat;
 .chart-container {
     min-height: 0; 
     max-height: none;
+    height: auto;
     overflow: visible;
     max-width: 100%;
   }
@@ -1408,9 +1642,84 @@ background-repeat: no-repeat;
   opacity:1 !important;
 }
 
-.static-section-inner {
-  padding:5px;
+
+
+ .curtain-section {
+    margin-top: 0;      
+    min-height: 100vh;    
+  }
+
+ 
+  .curtain-section-virginia {
+    margin-top: -35h;      
+    min-height: 100vh;    
+    padding: 40px 20px;
+  }
+
+.section-inner {
+  display: flex;
+    flex-direction: column;
 }
 
+.scroll-steps {
+  position: absolute;
+  z-index: 0; /* Ensures scroll events fire over the sticky image layer */
+  pointer-events: none; /* Lets user touch/swipe directly through to images if needed */
+  min-height: 0;
+}
+
+
+.scroll-steps .step {
+    height: 70vh; 
+  }
+
+.scroll-steps .step-buffer {
+    height:0vh;
+  }
+
+.scroll-steps .spacer {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+  }
+
+.spacer {
+  height: 0vh;
+}
+
+
+.pin-wrap {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 1; /* Sits below intro and scroll steps */
+  overflow: hidden;
+}
+
+
+#stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+
+  .scroll-container {
+  height: auto !important;
+  min-height: 0 !important;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+ #chart-g-wrapper {
+    position: sticky;
+    top: 0;
+    background: inherit;
+    z-index: 10;
+  }
 
 }
