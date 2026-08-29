@@ -1345,7 +1345,10 @@ function drawCarousel(dataG) {
     .style("flex", "0 0 85%")
     .style("max-width", "340px")
     .style("scroll-padding-left", "4px")
-    .style("scroll-snap-align", "start");
+    .style("scroll-snap-align", "start")
+    .style("-webkit-user-drag", "none")
+    .style("user-select", "none")
+    .style("-webkit-user-select", "none");
 
   cards.each(function(d) {
     const svg = d3.select(this)
@@ -1354,7 +1357,10 @@ function drawCarousel(dataG) {
       .attr("preserveAspectRatio", "xMidYMid meet")
       .style("width", "100%")
       .style("height", "auto")
-      .style("display", "block");
+      .style("display", "block")
+      .style("pointer-events", "none")   
+      .attr("draggable", "false")
+      .on("dragstart", (event) => event.preventDefault());
 
     const g = svg.append("g");
 
