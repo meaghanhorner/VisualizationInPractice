@@ -2,7 +2,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 
 ScrollTrigger.normalizeScroll({
-  allowNestedScroll: true
+  allowNestedScroll: true,
+  type: "touch,scroll,wheel",
+  lockAxis: false
 });
 
 let resizeTimeout;
