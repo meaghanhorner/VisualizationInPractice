@@ -600,6 +600,9 @@ const chartD = {
   xAxisGroup: null,
   data: null,
   stages: null,
+  tooltip: null,
+  width: null,
+  height: null,
 
   init: function (containerSelector, dataUrl) {
     return d3.json(dataUrl).then((raw) => {
@@ -615,6 +618,9 @@ const chartD = {
       const margin = { top: 30, right: 140, bottom: 50, left: 60 };
       const width = totalWidth - margin.left - margin.right;
       const height = totalHeight - margin.top - margin.bottom;
+
+      this.width = width;
+      this.height = height;
 
       // 2. Setup SVG Root
       this.svg = d3
@@ -680,6 +686,15 @@ const chartD = {
           filterFn: () => true
         }
       };
+
+      d3.select("body").selectAll(".tooltip-d").remove();
+      this.tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip-d")
+        .style("opacity", 0)
+        .style("position", "absolute")
+        .style("pointer-events", "none");
+
 
       // Set initial stage
       this.setStage(1);
@@ -781,6 +796,76 @@ const chartD = {
       .duration(750)
       .style("opacity", 1); // Only transition opacity
 
+      this.svg.selectAll(".hover-overlay").remove();
+    this.svg.selectAll(".hover-guide").remove();
+ 
+    const bisectDate = d3.bisector((d) => d.date).left;
+    const historicalCutoff = new Date("2026-06-30");
+ 
+    const overlay = this.svg.append("rect")
+      .attr("class", "hover-overlay")
+      .attr("width", this.width)
+      .attr("height", this.height)
+      .style("fill", "none")
+      .style("pointer-events", "all")
+      .on("mouseover", () => {
+        this.tooltip.style("opacity", 1);
+      })
+      .on("mouseout", () => {
+        this.tooltip.style("opacity", 0);
+      })
+      .on("mousemove", (evt) => {
+        const [mx] = d3.pointer(evt, overlay.node());
+        const hoveredDate = this.xScale.invert(mx);
+ 
+        // Find nearest point in each series to the hovered date
+         const rows = grouped
+          .filter((series) => {
+            // After 2025, drop Historical Actual from the tooltip
+            if (series.key === "Historical Actual" && hoveredDate > historicalCutoff) {
+              return false;
+            }
+            // Before 2026, only show Historical Actual
+            if (series.key !== "Historical Actual" && hoveredDate <= historicalCutoff) {
+              return false;
+            }
+            return true;
+          })
+          .map((series) => {
+            const i = bisectDate(series.values, hoveredDate, 1);
+            const a = series.values[i - 1];
+            const b = series.values[i];
+            const closest =
+              !a ? b : !b ? a :
+              (hoveredDate - a.date > b.date - hoveredDate ? b : a);
+            return closest ? { key: series.key, point: closest } : null;
+          })
+          .filter(Boolean);
+ 
+        if (!rows.length) {
+          this.tooltip.style("opacity", 0);
+          return;
+        }
+        this.tooltip.style("opacity", 1);
+ 
+        const snapDate = rows[0].point.date;
+ 
+        const rowsHtml = rows
+          .map(
+            (r) =>
+              `<div style="color:${this.colorScale(r.key)}">
+                 <strong>${r.key}:</strong> ${r.point.value.toLocaleString()} MW
+               </div>`
+          )
+          .join("");
+ 
+        this.tooltip
+          .html(
+            `<div>${d3.timeFormat("%b %Y")(snapDate)}</div>${rowsHtml}`
+          )
+          .style("left", `${evt.pageX + 12}px`)
+          .style("top", `${evt.pageY - 28}px`);
+      });
   },
 
   initScrollySteps: function () {
