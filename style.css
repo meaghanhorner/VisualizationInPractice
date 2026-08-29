@@ -1782,7 +1782,7 @@ background-repeat: no-repeat;
 }
 
  #chart-g-wrapper {
-    position: sticky;
+    position: static;
     top: 0;
     background: inherit;
     z-index: 10;
