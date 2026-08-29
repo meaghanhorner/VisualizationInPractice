@@ -1324,6 +1324,8 @@ function drawCarousel(dataG) {
   const scroller = root.append("div")
     .attr("class", "carousel-scroller")
     .style("display", "flex")
+    .style("overscroll-behavior-x", "contain")
+    .style("flex", "0 0 280px")
     .style("overflow-x", "auto")
     .style("scroll-snap-type", "x proximity")
     .style("gap", "12px")
