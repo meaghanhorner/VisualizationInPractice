@@ -3,6 +3,7 @@
 html {
   margin:0;
   max-width: 100%;
+  touch-action: pan-y pinch-zoom !important;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
   padding:0;
   overflow:visible;
   max-width:100%;
+  touch-action: pan-y pinch-zoom !important;
 }
 
 main {
@@ -78,6 +80,8 @@ h2 {
   font-weight: 700;
   font-size: 2.4rem;
   font-style: normal;
+
+  
 }
 p {
   font-family: "Alegreya", serif;
@@ -848,6 +852,47 @@ article {
 .chart-header h5,
 .chart-header h6 { font-size: clamp(0.85rem, 1.8vh, 1rem); margin: 0 0 0.2em; }
 
+.intro-content {
+  max-width: 100%;
+  display: flex;
+  min-width: 0;
+  flex-direction:column;
+  justify-content: center;
+  text-align: center;
+}
+.intro-content h2 {
+  font-size: clamp(1.5rem,12vw,15rem);
+   white-space: nowrap;
+  overflow: hidden;      
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  min-height: fit-content;
+
+}
+.intro-content h3 {
+  font-size: clamp(1.2rem,3vw,5rem);
+   white-space: nowrap;
+  overflow: hidden;      
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+}
+
+.intro-content h5 {
+  font-size: clamp(.9rem,3vw,1.2rem);
+   white-space: nowrap;
+  overflow: hidden;      
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+}
 
 .intro-step-d {
   min-height: 3rem;
@@ -1037,17 +1082,20 @@ svg {
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important; /* Centers h2 vertically in the 100dvh space */
-  align-items: center !important;    /* Centers h2 horizontally */
+  justify-content: center !important; 
+  align-items: center !important;   
   box-sizing: border-box;
   padding: 0 2rem;
   margin: 0 auto;
   align-self: stretch;
 }
 
-#intro h2 {
-  margin: 0 !important;              /* Removes default heading margins pulling it down */
-  position: static !important;        /* Keeps h2 inside the flex flow */
+#intro h2 {    
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;     
+  position: static;
 }
 
 
@@ -1146,6 +1194,10 @@ svg {
 .caption-2 a {
   font-weight: 400;
   color: #777777;
+}
+
+.carousel-scroller {
+  touch-action: pan-x !important;
 }
 
 #chart-b-legend {
