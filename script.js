@@ -1,7 +1,9 @@
 gsap.registerPlugin(ScrollTrigger)
 
 
-ScrollTrigger.normalizeScroll(true);
+ScrollTrigger.normalizeScroll({
+  allowNestedScroll: true
+});
 
 let resizeTimeout;
 window.addEventListener("resize", () => {
