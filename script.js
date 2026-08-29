@@ -1321,7 +1321,7 @@ function drawCarousel(dataG) {
     .attr("class", "carousel-scroller")
     .style("display", "flex")
     .style("overflow-x", "auto")
-    .style("scroll-snap-type", "x mandatory")
+    .style("scroll-snap-type", "x proximity")
     .style("gap", "12px")
     .style("padding", "4px 4px 12px 4px")
     .style("-webkit-overflow-scrolling", "touch");

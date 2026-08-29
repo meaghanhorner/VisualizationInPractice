@@ -843,6 +843,7 @@ article {
   padding-bottom: 1vh;
   z-index: 3;
   text-align: left;
+  background: #d5dae6;
 }
 
 .intro-step h2 { font-size: clamp(1.4rem, 4vh, 2.25rem); margin: 0 0 0.3em; }
