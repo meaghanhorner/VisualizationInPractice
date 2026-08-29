@@ -1324,16 +1324,13 @@ function drawCarousel(dataG) {
   const scroller = root.append("div")
     .attr("class", "carousel-scroller")
     .style("display", "flex")
-    .style("overscroll-behavior-x", "contain")
-    .style("flex", "0 0 280px")
     .style("overflow-x", "auto")
-    .style("scroll-snap-type", "x proximity")
     .style("gap", "12px")
     .style("padding", "4px 4px 12px 4px")
     .style("-webkit-overflow-scrolling", "touch");
 
-  const cardWidth = 280;
-  const cardHeight = 280;
+  const cardWidth = 260;
+  const cardHeight = 260;
   const margin = { top: 25, right: 20, bottom: 25, left: 20 };
 
   const colorScale = d3.scaleLinear()
@@ -1347,7 +1344,8 @@ function drawCarousel(dataG) {
     .attr("class", "card")
     .style("flex", "0 0 85%")
     .style("max-width", "340px")
-    .style("scroll-snap-align", "center");
+    .style("scroll-padding-left", "4px")
+    .style("scroll-snap-align", "start");
 
   cards.each(function(d) {
     const svg = d3.select(this)
