@@ -1167,6 +1167,7 @@ Promise.all([
 });
 
 let currentData = null;
+let lastWidth = window.innerWidth;
 
 function render(dataG) {
   currentData = dataG;
@@ -1181,7 +1182,10 @@ let resizeTimer;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    if (currentData) render(currentData);
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      if (currentData) render(currentData);
+    }
   }, 200);
 });
 
