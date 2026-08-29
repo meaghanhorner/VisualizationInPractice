@@ -3,7 +3,7 @@
 html {
   margin:0;
   max-width: 100%;
-  touch-action: pan-y pinch-zoom !important;
+  touch-action: auto !important;
 }
 
 body {
@@ -16,7 +16,7 @@ body {
   padding:0;
   overflow:visible;
   max-width:100%;
-  touch-action: pan-y pinch-zoom !important;
+  touch-action: auto !important;
 }
 
 main {
@@ -1197,7 +1197,7 @@ svg {
 }
 
 .carousel-scroller {
-  touch-action: pan-x !important;
+  touch-action: pan-x;
 }
 
 #chart-b-legend {
