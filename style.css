@@ -862,10 +862,7 @@ article {
   text-align: center;
 }
 .intro-content h2 {
-  font-size: clamp(1.5rem,12vw,15rem);
-   white-space: nowrap;
-  overflow: hidden;      
-  text-overflow: ellipsis;
+  font-size: clamp(1.5rem,9vw,12rem);
   display: block;
   width: 100%;
   min-width: 0;
@@ -874,7 +871,7 @@ article {
 
 }
 .intro-content h3 {
-  font-size: clamp(1.2rem,4vw,5rem);
+  font-size: clamp(1.2rem,2vw,3rem);
    white-space: normal;
   display: block;
   width: 100%;
