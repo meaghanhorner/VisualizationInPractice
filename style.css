@@ -860,17 +860,16 @@ article {
   flex-direction:column;
   justify-content: center;
   text-align: center;
+  align-items: center;
 }
 .intro-content h2 {
-  font-size: clamp(1.5rem,9vw,12rem);
-  display: block;
-  line-height: 1.2;
-  width: 100%;
-  min-width: 0;
-  flex: 1;
-  min-height: fit-content;
-
+  font-size: clamp(1.5rem, 9vw, 12rem);
+  align-self: flex-start; 
+  height: auto;           
+  min-height: 0;         
+  line-height: 1.2;      
 }
+
 .intro-content h3 {
   font-size: clamp(1.2rem,2vw,3rem);
    white-space: normal;
