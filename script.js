@@ -1516,20 +1516,20 @@ function switchTo(index) {
 
 ScrollTrigger.create({
   id: "a",
-  trigger: ".scroll-container",  /* Trigger from the outer wrapper */
-  pin: ".pin-wrap",              /* Pin the wrapper, not just the inner stage */
-  start: "top top",              /* Locks in place right as it hits top of viewport */
-  end: "+=400%",                /* Gives 3 full viewports of scroll runway */
-  pinSpacing: true,              /* CRITICAL: GSAP pushes down the next section automatically */
+  trigger: ".scroll-container",  
+  pin: ".pin-wrap",              
+  start: "top top",              
+  end: "+=400%",               
+  pinSpacing: true,             
   scrub: false,
   onUpdate: (self) => {
-    // Clamp values so each image gets an equal duration AND Image 2 stays visible before unpinning
+    
     if (self.progress < 0.33) {
       switchTo(0);
     } else if (self.progress < 0.66) {
       switchTo(1);
     } else {
-      switchTo(2); /* Image 2 stays active from 66% to 100% progress */
+      switchTo(2);
     }
   }
 });
