@@ -864,6 +864,7 @@ article {
 .intro-content h2 {
   font-size: clamp(1.5rem,9vw,12rem);
   display: block;
+  line-height: 1.2;
   width: 100%;
   min-width: 0;
   flex: 1;
@@ -875,6 +876,7 @@ article {
    white-space: normal;
   display: block;
   width: 100%;
+  line-height: 1.2;
   min-width: 0;
   flex: 1;
 }
@@ -885,6 +887,7 @@ article {
   overflow: hidden;      
   text-overflow: ellipsis;
   display: block;
+  line-height: 1.2;
   width: 100%;
   min-width: 0;
   flex: 1;
